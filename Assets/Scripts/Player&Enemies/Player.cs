@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
-    Text healthText;
-    bool invunrable = false;
-    Rigidbody2D body2D;
 	[System.Serializable]
 	public class PlayerStats{
 		public int PlayerHealth = 3;
 	}
 
+    Text healthText;
+    bool invunrable = false;
+    Rigidbody2D body2D;
+
 	public PlayerStats playerStats = new PlayerStats ();
 
 	// Use this for initialization
 	void Start () {
-        body2D = GetComponent<Rigidbody2D>();
+        body2D = gameObject.GetComponent<Rigidbody2D>();
         healthText = GameObject.Find("Health").GetComponent<Text>();
         healthText.text = "Health: " + playerStats.PlayerHealth;
 
@@ -67,7 +69,7 @@ public class Player : MonoBehaviour {
 		if (other.gameObject.name == "Goal"){
 			float fadeTime = GameObject.Find("Goal").GetComponent<Fading> ().BeginFade(1);
 			yield return new WaitForSeconds (fadeTime);
-			Application.LoadLevel (Application.loadedLevel + 1);
+			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
 		}
 	}
 }

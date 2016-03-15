@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelNumber : MonoBehaviour {
 
-	bool level1 = false;
+	//bool level1 = false;
 
 	Text levelText;
 
@@ -13,11 +14,11 @@ public class LevelNumber : MonoBehaviour {
 
 		levelText = GetComponent<Text> ();
 
-		level1 = true;
+		//level1 = true;
 
-		if (level1){
-			levelText.text = "Floor Number";
-		}
+		//if (level1){
+			levelText.text = ("Floor Number " + SceneManager.GetActiveScene().buildIndex);
+		//}
 	}
 	
 	// Update is called once per frame

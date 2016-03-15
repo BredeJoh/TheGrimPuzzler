@@ -11,8 +11,6 @@ public class GameMaster : MonoBehaviour {
 	public static bool currentPlayerBrute = false;
 	public static bool currentPlayerBanshee = false;
 
-	public bool[] currentLevel;
-
 	public static int collectables;
 	Text collect;
 
