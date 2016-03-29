@@ -26,7 +26,7 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		collect.text = ("Collected:" + collectables);
+		collect.text = ("Collectables: " + collectables);
 	}
 
 	// Update is called once per frame
