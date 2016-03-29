@@ -7,11 +7,14 @@ public class BansheeController : MonoBehaviour {
 	float jumpSpeed = 6.0f;
 	bool isGrounded = false;
 	Rigidbody2D body2D;
-
-	// Use this for initialization
-	void Start () {
+    public Transform firePoint;
+    public Transform Bone_Projectileprefab;
+    bool throws = false;
+    // Use this for initialization
+    void Start () {
 		body2D = GetComponent<Rigidbody2D> ();
-	}
+        firePoint = firePoint.transform;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -34,7 +37,14 @@ public class BansheeController : MonoBehaviour {
 				body2D.velocity = new Vector2 (body2D.velocity.x, jumpSpeed);
 				isGrounded = false;
 			}
-		} else {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (throws == false)
+                {
+                    StartCoroutine(attackAndWait(2.0f));
+                }
+            }
+        } else {
 			//gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,transform.position.y);
 		}
 	}
@@ -44,4 +54,11 @@ public class BansheeController : MonoBehaviour {
 			isGrounded = true;
 		}
 	}
+    IEnumerator attackAndWait(float WaitTime)
+    {
+        throws = true;
+        Instantiate(Bone_Projectileprefab, firePoint.position, gameObject.transform.rotation);
+        yield return new WaitForSeconds(WaitTime);
+        throws = false;
+    }
 }
