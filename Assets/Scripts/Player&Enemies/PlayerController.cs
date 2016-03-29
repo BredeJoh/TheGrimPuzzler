@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionStay2D (Collision2D other){
-        if (other.gameObject.tag == "enemySkele")
+        if (other.gameObject.tag == "enemySkele" || other.gameObject.tag == "projectile") 
         {
             stunned = true;
             Vector2 knockBack = other.gameObject.transform.position - gameObject.transform.position;

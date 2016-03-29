@@ -88,18 +88,18 @@ public class enemyMovement : MonoBehaviour {
     }
 
 	void OnCollisionEnter2D (Collision2D other){
-		if (other.gameObject.tag == "crate"){
+		if (other.gameObject.tag == "crate" || other.gameObject.tag == "projectile"){
 
-		if (gameObject.tag == "enemyBrute"){
-			Instantiate(bruteSpawn, transform.position, transform.rotation);
-			Destroy (this.gameObject);
-		} else if (gameObject.tag == "enemySkele"){
-			Instantiate(skeleSpawn, transform.position, transform.rotation);
-			Destroy (this.gameObject);
-		} else if (gameObject.tag == "enemyBanshee"){
-			Instantiate (banshSpawn, transform.position, transform.rotation);
-			Destroy (this.gameObject);
-		}
+		    if (gameObject.tag == "enemyBrute"){
+			    Instantiate(bruteSpawn, transform.position, transform.rotation);
+			    Destroy (this.gameObject);
+		    } else if (gameObject.tag == "enemySkele"){
+			    Instantiate(skeleSpawn, transform.position, transform.rotation);
+			    Destroy (this.gameObject);
+		    } else if (gameObject.tag == "enemyBanshee"){
+			    Instantiate (banshSpawn, transform.position, transform.rotation);
+			    Destroy (this.gameObject);
+		    }
 	}
 }
 

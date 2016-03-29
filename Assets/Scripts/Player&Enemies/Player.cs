@@ -63,6 +63,10 @@ public class Player : MonoBehaviour {
 		{
 			DamagePlayer(1);
 		}
+        if (other.gameObject.tag == "projectile")
+        {
+            DamagePlayer(1);
+        }
     }
 
 	IEnumerator OnTriggerEnter2D (Collider2D other){

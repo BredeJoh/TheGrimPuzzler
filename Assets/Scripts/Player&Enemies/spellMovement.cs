@@ -4,7 +4,7 @@ using System.Collections;
 public class spellMovement : MonoBehaviour {
 
     Rigidbody2D body2D;
-    public int throwspeed = 6;
+    public int throwspeed = 8;
     float throwDirection;
     GameObject playerBody2D;
     GameObject banshee;
@@ -34,7 +34,7 @@ public class spellMovement : MonoBehaviour {
             throwDirection = -1;
         }
         
-        gameObject.transform.position = new Vector2((throwDirection/10) + gameObject.transform.position.x, gameObject.transform.position.y);
+        gameObject.transform.position = new Vector2((throwDirection/throwspeed) + gameObject.transform.position.x, gameObject.transform.position.y);
     }
 
     void OnCollisionEnter2D(Collision2D other)
