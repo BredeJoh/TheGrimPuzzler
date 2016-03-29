@@ -8,9 +8,11 @@ public class BoneScript : MonoBehaviour {
     public int throwspeed = 6;
     float throwDirection;
     GameObject playerBody2D;
+    GameObject Skeleton;
 
 	// Use this for initialization
 	void Start () {
+        Skeleton = GameObject.FindGameObjectWithTag("skeleton");
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         throwDirection = playerBody2D.transform.position.x - gameObject.transform.position.x;
         if (throwDirection > 0)
@@ -20,6 +22,10 @@ public class BoneScript : MonoBehaviour {
         else
         {
             throwDirection = -1;
+        }
+        if (GameMaster.currentPlayerSkeleton == true)
+        {
+            throwDirection = Skeleton.transform.localScale.x * -1f;
         }
         body2D = gameObject.GetComponent<Rigidbody2D>();
         body2D.velocity = new Vector2(throwDirection, 1f) * throwspeed;

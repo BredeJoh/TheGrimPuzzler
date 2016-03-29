@@ -8,11 +8,15 @@ public class SkeletonController : MonoBehaviour
     float jumpSpeed = 12.0f;
     bool isGrounded = false;
     Rigidbody2D body2D;
+    bool throws = false;
+    public Transform firePoint;
+    public Transform Bone_Projectileprefab;
 
     // Use this for initialization
     void Start()
     {
         body2D = GetComponent<Rigidbody2D>();
+        firePoint = firePoint.transform;
     }
 
     // Update is called once per frame
@@ -43,6 +47,13 @@ public class SkeletonController : MonoBehaviour
                 body2D.velocity = new Vector2(body2D.velocity.x, jumpSpeed);
                 isGrounded = false;
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (throws == false)
+                {
+                    StartCoroutine(attackAndWait(2.0f));
+                }
+            }
         }
         else {
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, transform.position.y);
@@ -69,5 +80,12 @@ public class SkeletonController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+    IEnumerator attackAndWait(float WaitTime)
+    {
+        throws = true;
+        Instantiate(Bone_Projectileprefab, firePoint.position, gameObject.transform.rotation);
+        yield return new WaitForSeconds(WaitTime);
+        throws = false;
     }
 }
