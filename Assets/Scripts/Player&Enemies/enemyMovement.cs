@@ -9,6 +9,8 @@ public class enemyMovement : MonoBehaviour {
     float speed = 3f;
     private bool moveRight = true;
     private float PlayerDistance = 100f;
+    private float PlayerYDistance = 100f;
+    private bool playerTooHigh = true;
 
     bool throws = false;
 
@@ -29,8 +31,18 @@ public class enemyMovement : MonoBehaviour {
     void Update()
     {
         PlayerDistance = gameObject.transform.position.x - playerBody2D.transform.position.x;
+        PlayerYDistance = gameObject.transform.position.y - playerBody2D.transform.position.y;
 
-        if (PlayerDistance <= 10f && PlayerDistance > -10f)
+        if (PlayerYDistance > 5 || PlayerYDistance < -5)
+        {
+            playerTooHigh = true;
+        }
+        else
+        {
+            playerTooHigh = false;
+        }
+
+        if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
         {
 
             if (PlayerDistance > 0)
