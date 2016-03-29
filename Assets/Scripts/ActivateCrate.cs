@@ -35,6 +35,7 @@ public class ActivateCrate : MonoBehaviour {
 		if ((other.gameObject.tag == "Player" || other.gameObject.tag == "banshee") && Input.GetKeyDown(KeyCode.DownArrow)){
 
 			currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 2;
+			currentCrate.GetComponent<Rigidbody2D> ().isKinematic = false;
 
 			gameObject.GetComponent<BoxCollider2D>().enabled = !enabled;
 
@@ -51,6 +52,7 @@ public class ActivateCrate : MonoBehaviour {
 		Instantiate (crate, crateSpawn.position, crateSpawn.rotation);
 		currentCrate = GameObject.FindGameObjectWithTag ("crate");
 		currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 0;
+		currentCrate.GetComponent<Rigidbody2D> ().isKinematic = true;
 		respawn = true;
 		gameObject.GetComponent<BoxCollider2D> ().enabled = enabled;
 	}

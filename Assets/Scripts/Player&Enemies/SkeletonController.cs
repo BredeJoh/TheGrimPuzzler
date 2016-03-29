@@ -5,7 +5,7 @@ public class SkeletonController : MonoBehaviour
 {
 
     float speed = 7.0f;
-    float jumpSpeed = 12.0f;
+    float jumpSpeed = 14.0f;
     bool isGrounded = false;
     Rigidbody2D body2D;
 
@@ -13,6 +13,7 @@ public class SkeletonController : MonoBehaviour
     void Start()
     {
         body2D = GetComponent<Rigidbody2D>();
+		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (1, transform.position.y);
     }
 
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class SkeletonController : MonoBehaviour
             }
         }
         else {
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, transform.position.y);
+          // gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, transform.position.y);
         }
     }
 
