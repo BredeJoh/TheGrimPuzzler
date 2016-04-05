@@ -13,6 +13,11 @@ public class Player : MonoBehaviour {
     Text healthText;
     bool invunrable = false;
     Rigidbody2D body2D;
+	public Sprite[] healthBar;
+	GameObject health;
+
+	//Variabel til helsa
+	int i = 0;
 
 	public PlayerStats playerStats = new PlayerStats ();
 
@@ -21,9 +26,10 @@ public class Player : MonoBehaviour {
         body2D = gameObject.GetComponent<Rigidbody2D>();
         healthText = GameObject.Find("Health").GetComponent<Text>();
         healthText.text = "Health: " + playerStats.PlayerHealth;
-
+		health = GameObject.Find ("Health_image");
+		health.GetComponent<SpriteRenderer>().sprite = healthBar[0];
 	}
-	
+		
 	// Update is called once per frame
 	void Update () {
         healthText.text = "Health: " + playerStats.PlayerHealth;
@@ -49,25 +55,32 @@ public class Player : MonoBehaviour {
 		
 		if(other.gameObject.tag == "spikes")
         {			
-			DamagePlayer (3);		
+			PlayerIsDamaged (3);		
 		}
         if (other.gameObject.tag == "enemySkele")
         {
-            DamagePlayer(1);
+			PlayerIsDamaged (1);
         }
         if (other.gameObject.tag == "enemyBrute")
         {
-            DamagePlayer(1);
+			PlayerIsDamaged (1);
         }
 		if (other.gameObject.tag == "enemyBanshee")
 		{
-			DamagePlayer(1);
+			PlayerIsDamaged (1);
 		}
         if (other.gameObject.tag == "projectile")
         {
-            DamagePlayer(1);
+			PlayerIsDamaged (1);
         }
     }
+
+	void PlayerIsDamaged (int damageIn){
+		
+		health.GetComponent<SpriteRenderer>().sprite = healthBar[i+1];
+		i++;
+		DamagePlayer (damageIn);
+	}
 
 	IEnumerator OnTriggerEnter2D (Collider2D other){
 		if (other.gameObject.name == "Goal"){
