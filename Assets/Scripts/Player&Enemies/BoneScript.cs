@@ -9,10 +9,14 @@ public class BoneScript : MonoBehaviour {
     float throwDirection;
     GameObject playerBody2D;
     GameObject Skeleton;
+    private Vector2 distance;
+
 
 	// Use this for initialization
 	void Start () {
-        Skeleton = GameObject.FindGameObjectWithTag("skeleton");
+            Skeleton = GameObject.FindGameObjectWithTag("skeleton");
+           
+
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         throwDirection = playerBody2D.transform.position.x - gameObject.transform.position.x;
         if (throwDirection > 0)
@@ -27,8 +31,10 @@ public class BoneScript : MonoBehaviour {
         {
             throwDirection = Skeleton.transform.localScale.x * -1f;
         }
-        body2D = gameObject.GetComponent<Rigidbody2D>();
-        body2D.velocity = new Vector2(throwDirection, 1f) * throwspeed;
+        
+            body2D = gameObject.GetComponent<Rigidbody2D>();
+            body2D.velocity = new Vector2(throwDirection, 1f) * throwspeed;
+        
 	
 	}
 	
@@ -39,7 +45,9 @@ public class BoneScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-       
+        if (other.gameObject.tag != "projectile")
+        {
             Destroy(gameObject);
+        }
     }
 }
