@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -75,8 +76,14 @@ public class GameMaster : MonoBehaviour {
 	public IEnumerator RespawnPlayer () {
 
 		yield return new WaitForSeconds (spawnDelay);
-		
-		Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
+	
+		// Begynner å fade ut
+		float fadeTime = GameObject.Find("Goal").GetComponent<Fading> ().BeginFade(1);
+
+		// Venter med restart til etter fading er ferdig 
+		yield return new WaitForSeconds (spawnDelay);
+
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public static void KillPlayer (Player player) {
