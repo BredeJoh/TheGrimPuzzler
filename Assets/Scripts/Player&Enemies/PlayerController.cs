@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
                 body2D.velocity = new Vector2(speed, speed);
             }
         }
-        if(other.gameObject.name == "EnemyBrute")
+        if(other.gameObject.tag == "enemyBrute")
         {
             stunned = true;
             Vector2 knockBack = other.gameObject.transform.position - gameObject.transform.position;

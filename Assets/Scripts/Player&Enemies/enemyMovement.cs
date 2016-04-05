@@ -36,12 +36,12 @@ public class enemyMovement : MonoBehaviour {
         if (PlayerYDistance > 5 || PlayerYDistance < -5)
         {
             playerTooHigh = true;
-            print(PlayerYDistance);
+            
         }
         else
         {
             playerTooHigh = false;
-            print(PlayerYDistance);
+            
         }
 
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
