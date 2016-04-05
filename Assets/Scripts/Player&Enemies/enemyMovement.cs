@@ -36,10 +36,12 @@ public class enemyMovement : MonoBehaviour {
         if (PlayerYDistance > 5 || PlayerYDistance < -5)
         {
             playerTooHigh = true;
+            print(PlayerYDistance);
         }
         else
         {
             playerTooHigh = false;
+            print(PlayerYDistance);
         }
 
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
@@ -60,13 +62,13 @@ public class enemyMovement : MonoBehaviour {
         }
 
 
-        if (moveRight && (PlayerDistance > 10f || PlayerDistance < -10f))
+        if (moveRight && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
             {
                 body2D.velocity = new Vector2(speed, body2D.velocity.y);
                 transform.localScale = new Vector2(-1f, 1f);
 
             }
-            else if (moveRight == false && (PlayerDistance > 10f || PlayerDistance < -10f))
+            else if (moveRight == false && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
             {
                 body2D.velocity = new Vector2(-speed, body2D.velocity.y);
                 transform.localScale = new Vector2(1f, 1f);
