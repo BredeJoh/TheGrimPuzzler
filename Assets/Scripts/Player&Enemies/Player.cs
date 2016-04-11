@@ -16,6 +16,9 @@ public class Player : MonoBehaviour {
 	public Sprite[] healthBar;
 	GameObject health;
 
+	public GameObject playerDeathParticle;
+	GameObject player;
+
 	//Variabel til helsa
 	int i = 0;
 
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		player = this.gameObject;
+
         body2D = gameObject.GetComponent<Rigidbody2D>();
         healthText = GameObject.Find("Health").GetComponent<Text>();
         healthText.text = "Health: " + playerStats.PlayerHealth;
@@ -32,6 +37,7 @@ public class Player : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
+
         healthText.text = "Health: " + playerStats.PlayerHealth;
     }
 
@@ -43,6 +49,8 @@ public class Player : MonoBehaviour {
             StartCoroutine(invunrableState());
         }
 		if (playerStats.PlayerHealth <= 0) {
+
+			Instantiate (playerDeathParticle, player.transform.position, player.transform.rotation);
 			GameMaster.KillPlayer(this);
 		}
 	}
