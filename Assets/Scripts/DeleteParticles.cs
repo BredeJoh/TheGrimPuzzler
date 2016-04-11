@@ -5,13 +5,13 @@ public class DeleteParticles : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DestroyParticle ();
+		StartCoroutine(DestroyParticle ());
 	}
 
 	// Sletter partikklen etter den har gjort sitt
 	IEnumerator DestroyParticle (){
 		
 		yield return new WaitForSeconds (3);
-		Destroy (this.gameObject);
+		Destroy (gameObject);
 	}
 }
