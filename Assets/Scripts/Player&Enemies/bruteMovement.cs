@@ -43,7 +43,6 @@ public class bruteMovement : MonoBehaviour
         else
         {
             playerTooHigh = false;
-            print(PlayerYDistance);
         }
 
         if (PlayerDistance <= 3.5f && PlayerDistance > -3.5f && playerTooHigh == false)
