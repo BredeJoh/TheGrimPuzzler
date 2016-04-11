@@ -21,11 +21,17 @@ public class enemyMovement : MonoBehaviour {
 
 	public GameObject[] deathParticle;
 
+	Animator anim;
+
 	// Use this for initialization
 	void Start () {
         body2D = GetComponent<Rigidbody2D>();
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         firePoint = firePoint.transform;
+
+		if (gameObject.tag == "enemySkele"){
+			anim = gameObject.GetComponent<Animator> ();
+		}
 
     }
 
