@@ -19,8 +19,7 @@ public class Player : MonoBehaviour {
 	public GameObject playerDeathParticle;
 	GameObject player;
 
-	//Variabel til helsa
-	int i = 0;
+
 
 	public PlayerStats playerStats = new PlayerStats ();
 
@@ -37,6 +36,18 @@ public class Player : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
+
+		if (playerStats.PlayerHealth == 3){
+			health.GetComponent<SpriteRenderer>().sprite = healthBar[0];
+		} else if (playerStats.PlayerHealth == 2){
+			health.GetComponent<SpriteRenderer>().sprite = healthBar[1];
+		} else if (playerStats.PlayerHealth ==1){
+			health.GetComponent<SpriteRenderer>().sprite = healthBar[2];
+		} else if (playerStats.PlayerHealth == 0){
+			health.GetComponent<SpriteRenderer>().sprite = healthBar[3];
+		} else if (playerStats.PlayerHealth < 0){
+			health.GetComponent<SpriteRenderer>().sprite = healthBar[3];
+		}
 
         healthText.text = "Health: " + playerStats.PlayerHealth;
     }
@@ -63,32 +74,32 @@ public class Player : MonoBehaviour {
 		
 		if(other.gameObject.tag == "spikes")
         {			
-			PlayerIsDamaged (3);		
+			DamagePlayer (3);		
 		}
-        if (other.gameObject.tag == "enemySkele")
+        else if (other.gameObject.tag == "enemySkele")
         {
-			PlayerIsDamaged (1);
+			DamagePlayer (1);
         }
-        if (other.gameObject.tag == "enemyBrute")
+        else if (other.gameObject.tag == "enemyBrute")
         {
-			PlayerIsDamaged (1);
+			DamagePlayer (1);
         }
-		if (other.gameObject.tag == "enemyBanshee")
+		else if (other.gameObject.tag == "enemyBanshee")
 		{
-			PlayerIsDamaged (1);
+			DamagePlayer (1);
 		}
-        if (other.gameObject.tag == "projectile")
+        else if (other.gameObject.tag == "projectile")
         {
-			PlayerIsDamaged (1);
+			DamagePlayer (1);
         }
     }
 
-	void PlayerIsDamaged (int damageIn){
+	/*void PlayerIsDamaged (int damageIn){
 
 		health.GetComponent<SpriteRenderer>().sprite = healthBar[i+1];
 		i++;
 		DamagePlayer (damageIn);
-	}
+	}*/
 
 	IEnumerator OnTriggerEnter2D (Collider2D other){
 		if (other.gameObject.name == "Goal"){
