@@ -22,12 +22,16 @@ public class SkeleMovement : MonoBehaviour
 
     public GameObject[] deathParticle;
 
+    Animator anim;
+
     // Use this for initialization
     void Start()
     {
         body2D = GetComponent<Rigidbody2D>();
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         firePoint = firePoint.transform;
+        anim = gameObject.GetComponent<Animator>();
+        
 
     }
 
@@ -50,7 +54,10 @@ public class SkeleMovement : MonoBehaviour
 
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
         {
-
+            if (anim.GetInteger("animationstate") != 0)
+            {
+                anim.SetInteger ("animationstate", 0);
+            }
             if (PlayerDistance > 0)
             {
                 gameObject.transform.localScale = new Vector2(1f, 1f);
@@ -70,12 +77,21 @@ public class SkeleMovement : MonoBehaviour
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
+            if (anim.GetInteger("animationstate") != 1)
+            {
+                anim.SetInteger ("animationstate", 1);
+            }
+
 
         }
         else if (moveRight == false && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(-speed, body2D.velocity.y);
             transform.localScale = new Vector2(1f, 1f);
+            if (anim.GetInteger("animationstate") != 1)
+            {
+                anim.SetInteger ("animationstate", 1);
+            }
         }
     }
 
@@ -83,6 +99,7 @@ public class SkeleMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "movementTrigger")
         {
+            
             if (moveRight)
             {
                 moveRight = false;
@@ -120,9 +137,11 @@ public class SkeleMovement : MonoBehaviour
 
     IEnumerator attackAndWait(float WaitTime)
     {
+        
         throws = true;
         Instantiate(Bone_Projectileprefab, firePoint.position, gameObject.transform.rotation);
         yield return new WaitForSeconds(WaitTime);
         throws = false;
+        
     }
 }
