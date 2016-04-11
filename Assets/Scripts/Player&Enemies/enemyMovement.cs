@@ -19,6 +19,8 @@ public class enemyMovement : MonoBehaviour {
 	public GameObject banshSpawn;
     public Transform Bone_Projectileprefab;
 
+	public GameObject[] deathParticle;
+
 	// Use this for initialization
 	void Start () {
         body2D = GetComponent<Rigidbody2D>();
@@ -96,6 +98,7 @@ public class enemyMovement : MonoBehaviour {
 			    Instantiate(bruteSpawn, transform.position, transform.rotation);
 			    Destroy (this.gameObject);
 		    } else if (gameObject.tag == "enemySkele"){
+				Instantiate (deathParticle[0], transform.position, transform.rotation);
 			    Instantiate(skeleSpawn, transform.position, transform.rotation);
 			    Destroy (this.gameObject);
 		    } else if (gameObject.tag == "enemyBanshee"){

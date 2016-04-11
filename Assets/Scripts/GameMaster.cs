@@ -27,6 +27,7 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+		transform.position = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		collect.text = ("Collectables: " + collectables);
 	}
 
@@ -72,7 +73,7 @@ public class GameMaster : MonoBehaviour {
 			currentPlayerBanshee = false;
 		}
 	}
-
+		
 	public IEnumerator RespawnPlayer () {
 
 		yield return new WaitForSeconds (spawnDelay);

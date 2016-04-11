@@ -12,6 +12,8 @@ public class SkeletonController : MonoBehaviour
     public Transform firePoint;
     public Transform Bone_Projectileprefab;
 
+	public GameObject deathParticle;
+
     // Use this for initialization
     void Start()
     {
@@ -68,6 +70,7 @@ public class SkeletonController : MonoBehaviour
     {
         if (other.gameObject.tag == "spikes")
         {
+			Instantiate (deathParticle, transform.position, transform.rotation);
             GameMaster.KillSkeleton(this);
         }
     }
