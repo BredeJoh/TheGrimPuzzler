@@ -14,6 +14,8 @@ public class SkeletonController : MonoBehaviour
 
 	public GameObject deathParticle;
 
+	Animator anim;
+
     // Use this for initialization
     void Start()
     {
@@ -23,6 +25,7 @@ public class SkeletonController : MonoBehaviour
 
         firePoint = firePoint.transform;
 
+		anim = gameObject.GetComponent<Animator> ();
     }
 
     // Update is called once per frame
@@ -37,14 +40,27 @@ public class SkeletonController : MonoBehaviour
             {
                 body2D.velocity = new Vector2(-speed, body2D.velocity.y);
                 transform.localScale = new Vector2(1f, 1f);
+
+				// Gå-animation hvis han er på bakken
+				if(isGrounded){
+				anim.SetInteger ("animationstate", 1);
+				}
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
                 body2D.velocity = new Vector2(speed, body2D.velocity.y);
                 transform.localScale = new Vector2(-1f, 1f);
+				if(isGrounded){
+					anim.SetInteger ("animationstate", 1);
+				}
             }
             else {
                 body2D.velocity = new Vector2(0f, body2D.velocity.y);
+
+				// Kjør Idle-animation hvis han er på bakken
+				if(isGrounded){
+					anim.SetInteger ("animationstate", 0);
+				}
             }
 
             // Jumping
@@ -52,6 +68,7 @@ public class SkeletonController : MonoBehaviour
             {
                 body2D.velocity = new Vector2(body2D.velocity.x, jumpSpeed);
                 isGrounded = false;
+				anim.SetInteger ("animationstate", 2);
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -79,6 +96,7 @@ public class SkeletonController : MonoBehaviour
         if (other.gameObject.tag == "ground")
         {
             isGrounded = true;
+			anim.SetInteger ("animationstate", 0);
         }
     }
     void OnTriggerExit2D(Collider2D other)
