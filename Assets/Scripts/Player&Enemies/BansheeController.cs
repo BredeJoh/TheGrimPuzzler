@@ -4,7 +4,7 @@ using System.Collections;
 public class BansheeController : MonoBehaviour {
 
 	float speed = 7.0f; 
-	float jumpSpeed = 6.0f;
+	float jumpSpeed = 8.0f;
 	bool isGrounded = false;
 	Rigidbody2D body2D;
     public Transform firePoint;
