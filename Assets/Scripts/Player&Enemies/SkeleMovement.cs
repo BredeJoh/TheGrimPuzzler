@@ -54,10 +54,10 @@ public class SkeleMovement : MonoBehaviour
 
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
         {
-            if (anim.GetInteger("animationstate") != 0)
-            {
+          //  if (anim.GetInteger("animationstate") != 0)
+           // {
                 anim.SetInteger ("animationstate", 0);
-            }
+          //  }
             if (PlayerDistance > 0)
             {
                 gameObject.transform.localScale = new Vector2(1f, 1f);
@@ -77,10 +77,10 @@ public class SkeleMovement : MonoBehaviour
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
-            if (anim.GetInteger("animationstate") != 1)
-            {
+          //  if (anim.GetInteger("animationstate") != 1)
+          //  {
                 anim.SetInteger ("animationstate", 1);
-            }
+           // }
 
 
         }
@@ -88,10 +88,10 @@ public class SkeleMovement : MonoBehaviour
         {
             body2D.velocity = new Vector2(-speed, body2D.velocity.y);
             transform.localScale = new Vector2(1f, 1f);
-            if (anim.GetInteger("animationstate") != 1)
-            {
+            //if (anim.GetInteger("animationstate") != 1)
+           // {
                 anim.SetInteger ("animationstate", 1);
-            }
+          //  }
         }
     }
 
