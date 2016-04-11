@@ -62,6 +62,10 @@ public class SkeletonController : MonoBehaviour
 					anim.SetInteger ("animationstate", 0);
 				}
             }
+            if (Input.GetKey(KeyCode.S))
+            {
+                Destroy(gameObject);
+            }
 
             // Jumping
             if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded == true)
