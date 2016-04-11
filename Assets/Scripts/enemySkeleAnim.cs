@@ -17,5 +17,6 @@ public class enemySkeleAnim : MonoBehaviour {
 		} else {
 			anim.SetInteger ("animationstate", 1);
 		}
+
 	}
 }
