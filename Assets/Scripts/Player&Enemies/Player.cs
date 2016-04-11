@@ -84,7 +84,7 @@ public class Player : MonoBehaviour {
     }
 
 	void PlayerIsDamaged (int damageIn){
-		
+
 		health.GetComponent<SpriteRenderer>().sprite = healthBar[i+1];
 		i++;
 		DamagePlayer (damageIn);
