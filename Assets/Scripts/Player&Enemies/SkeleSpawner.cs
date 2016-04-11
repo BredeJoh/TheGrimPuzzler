@@ -50,7 +50,7 @@ public class SkeleSpawner : MonoBehaviour {
 
 			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
 
-				Instantiate(skeletonPrefab, skeletonSpawner.position, skeletonSpawner.rotation);
+				Instantiate(skeletonPrefab, skeletonSpawner.position + new Vector3(0f, 1f, 0f), skeletonSpawner.rotation);
 				skeleton.enabled = enabled;
 				limit = false;
 
