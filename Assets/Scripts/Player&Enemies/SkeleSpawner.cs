@@ -8,14 +8,14 @@ public class SkeleSpawner : MonoBehaviour {
 	public Transform skeletonSpawner;
 	public Transform currentSkeleton;
 
-	Text skeleton;
+
 
 	float nextTimeToSearch = 0;
 	public bool limit;
 
 	// Use this for initialization
 	void Start () {
-		skeleton = GameObject.Find ("ActiveSkeleton").GetComponent<Text> ();
+		
 
 		limit = true;
 	}
@@ -51,7 +51,7 @@ public class SkeleSpawner : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
 
 				Instantiate(skeletonPrefab, skeletonSpawner.position + new Vector3(2f, 1f, 0f), skeletonSpawner.rotation);
-				skeleton.enabled = enabled;
+
 				limit = false;
 
 			}
