@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 		public int PlayerHealth = 3;
 	}
 
-    Text healthText;
+    //Text healthText;
     bool invunrable = false;
     Rigidbody2D body2D;
 	public Sprite[] healthBar;
@@ -28,8 +28,8 @@ public class Player : MonoBehaviour {
 		player = this.gameObject;
 
         body2D = gameObject.GetComponent<Rigidbody2D>();
-        healthText = GameObject.Find("Health").GetComponent<Text>();
-        healthText.text = "Health: " + playerStats.PlayerHealth;
+        //healthText = GameObject.Find("Health").GetComponent<Text>();
+        //healthText.text = "Health: " + playerStats.PlayerHealth;
 		health = GameObject.Find ("Health_image");
 		health.GetComponent<SpriteRenderer>().sprite = healthBar[0];
 	}
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour {
 			health.GetComponent<SpriteRenderer>().sprite = healthBar[3];
 		}
 
-        healthText.text = "Health: " + playerStats.PlayerHealth;
+        //healthText.text = "Health: " + playerStats.PlayerHealth;
     }
 
 	public void DamagePlayer(int damage){
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour {
         yield return new WaitForSeconds(1);
         invunrable = false;
     }
+
 	void OnCollisionEnter2D (Collision2D other){
 		
 		if(other.gameObject.tag == "spikes")
@@ -103,6 +104,11 @@ public class Player : MonoBehaviour {
 	}*/
 
 	IEnumerator OnTriggerEnter2D (Collider2D other){
+
+		if (other.gameObject.tag == "collectable"){
+			playerStats.PlayerHealth += 1;
+		}
+
 		if (other.gameObject.name == "Goal"){
 			float fadeTime = GameObject.Find("Goal").GetComponent<Fading> ().BeginFade(1);
 			yield return new WaitForSeconds (fadeTime);

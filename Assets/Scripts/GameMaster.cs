@@ -13,7 +13,7 @@ public class GameMaster : MonoBehaviour {
 	public static bool currentPlayerBanshee = false;
 
 	public static int collectables;
-	Text collect;
+	//Text collect;
 
 	int spawnDelay = 1;
 
@@ -23,12 +23,12 @@ public class GameMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gm = GameObject.FindGameObjectWithTag ("GM").GetComponent<GameMaster>();
-		collect = GameObject.Find ("CurrentCollectables").GetComponent<Text> ();
+		//collect = GameObject.Find ("CurrentCollectables").GetComponent<Text> ();
 	}
 
 	void FixedUpdate(){
 		transform.position = GameObject.FindGameObjectWithTag ("Player").transform.position;
-		collect.text = ("Collectables: " + collectables);
+		//collect.text = ("Collectables: " + collectables);
 	}
 
 	// Update is called once per frame
