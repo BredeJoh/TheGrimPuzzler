@@ -20,9 +20,12 @@ public class bruteMovement : MonoBehaviour
     public GameObject banshSpawn;
     public Transform Bone_Projectileprefab;
 
+	Animator anim;
+
     // Use this for initialization
     void Start()
     {
+		anim = gameObject.GetComponent<Animator> ();
         body2D = GetComponent<Rigidbody2D>();
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         firePoint = firePoint.transform;
@@ -47,6 +50,7 @@ public class bruteMovement : MonoBehaviour
 
         if (PlayerDistance <= 3.5f && PlayerDistance > -3.5f && playerTooHigh == false)
         {
+			
 
             if (PlayerDistance > 0)
             {
@@ -58,6 +62,7 @@ public class bruteMovement : MonoBehaviour
             }
             if (attack == false)
             {
+				anim.SetInteger ("animationstate", 1);
                 StartCoroutine(attackAndWait(3.0f));
             }
         }
@@ -67,12 +72,14 @@ public class bruteMovement : MonoBehaviour
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
+			anim.SetInteger ("animationstate", 0);
 
         }
         else if (moveRight == false && (PlayerDistance > 3.5f || PlayerDistance < -3.5f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(-speed, body2D.velocity.y);
             transform.localScale = new Vector2(1f, 1f);
+			anim.SetInteger ("animationstate", 0);
         }
     }
 
