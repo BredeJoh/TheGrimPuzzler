@@ -57,6 +57,10 @@ public class BansheeController : MonoBehaviour {
 		if (other.gameObject.tag == "ground" || other.gameObject.tag == "spikes"){
 			isGrounded = true;
 		}
+        if (other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
+        {
+            Destroy(gameObject);
+        }
 	}
     IEnumerator attackAndWait(float WaitTime)
     {

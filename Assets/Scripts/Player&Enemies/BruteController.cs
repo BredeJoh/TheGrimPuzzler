@@ -43,7 +43,7 @@ public class BruteController : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D other){
 
-		if (other.gameObject.tag == "spikes") {
+		if (other.gameObject.tag == "spikes" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute") {
 			GameMaster.KillBrute(this);
 		}
 		if (other.gameObject.tag == "deadly") {

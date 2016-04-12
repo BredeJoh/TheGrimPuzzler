@@ -37,7 +37,7 @@ public class BansheeMovement : MonoBehaviour
         PlayerDistance = gameObject.transform.position.x - playerBody2D.transform.position.x;
         PlayerYDistance = gameObject.transform.position.y - playerBody2D.transform.position.y;
 
-        if (PlayerYDistance > 7 || PlayerYDistance < -7)
+        if (PlayerYDistance > 5 || PlayerYDistance < -5)
         {
             playerTooHigh = true;
 
@@ -46,6 +46,20 @@ public class BansheeMovement : MonoBehaviour
         {
             playerTooHigh = false;
 
+        }
+
+
+
+        if (moveRight && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
+        {
+            body2D.velocity = new Vector2(speed, body2D.velocity.y);
+            transform.localScale = new Vector2(-1f, 1f);
+
+        }
+        else if (moveRight == false && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
+        {
+            body2D.velocity = new Vector2(-speed, body2D.velocity.y);
+            transform.localScale = new Vector2(1f, 1f);
         }
 
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
@@ -63,19 +77,6 @@ public class BansheeMovement : MonoBehaviour
             {
                 StartCoroutine(attackAndWait(2.0f));
             }
-        }
-
-
-        if (moveRight && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
-        {
-            body2D.velocity = new Vector2(speed, body2D.velocity.y);
-            transform.localScale = new Vector2(-1f, 1f);
-
-        }
-        else if (moveRight == false && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
-        {
-            body2D.velocity = new Vector2(-speed, body2D.velocity.y);
-            transform.localScale = new Vector2(1f, 1f);
         }
     }
 

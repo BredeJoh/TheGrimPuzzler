@@ -50,7 +50,7 @@ public class BansheeSpawner : MonoBehaviour {
 
 			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
 
-				Instantiate(bansheePrefab, bansheeSpawner.position + new Vector3 (0f, 1f, 0f), bansheeSpawner.rotation);
+				Instantiate(bansheePrefab, bansheeSpawner.position + new Vector3 (2f, 1f, 0f), bansheeSpawner.rotation);
 				banshee.enabled = enabled;
 				limit = false;
 

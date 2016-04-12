@@ -5,16 +5,24 @@ public class spellMovement : MonoBehaviour {
 
     Rigidbody2D body2D;
     public int throwspeed = 8;
-    float throwDirection;
+    public float throwDirection = 0f;
     GameObject playerBody2D;
     GameObject banshee;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
 
         banshee = GameObject.FindGameObjectWithTag("banshee");
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         throwDirection = playerBody2D.transform.position.x - gameObject.transform.position.x;
+        if (throwDirection < 1.2f && throwDirection > 0f)
+        {
+            throwDirection -= 1.2f;
+        }
+        else if (throwDirection > -1.2f && throwDirection < 0f)
+        {
+            throwDirection += 1.2f;
+        }
         if (GameMaster.currentPlayerBanshee == true)
         {
             throwDirection = banshee.transform.localScale.x * -1;
@@ -28,11 +36,11 @@ public class spellMovement : MonoBehaviour {
     
         if (throwDirection > 0)
         {
-            throwDirection = 1;
+            throwDirection = 1f;
         }
-        else
+        else if (throwDirection < 0)
         {
-            throwDirection = -1;
+            throwDirection = -1f;
         }
         
         gameObject.transform.position = new Vector2((throwDirection/throwspeed) + gameObject.transform.position.x, gameObject.transform.position.y);

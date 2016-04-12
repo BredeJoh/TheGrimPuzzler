@@ -14,11 +14,20 @@ public class BoneScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-            Skeleton = GameObject.FindGameObjectWithTag("skeleton");
-           
 
+        Skeleton = GameObject.FindGameObjectWithTag("skeleton");
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         throwDirection = playerBody2D.transform.position.x - gameObject.transform.position.x;
+
+        if (throwDirection < 1.2f && throwDirection > 0f)
+        {
+            throwDirection -= 1.2f;
+        }
+        else if (throwDirection > -1.2f && throwDirection < 0f)
+        {
+            throwDirection += 1.2f;
+        }
+
         if (throwDirection > 0)
         {
             throwDirection = 1;

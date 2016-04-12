@@ -50,7 +50,7 @@ public class BruteSpawner : MonoBehaviour {
 			
 			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
 				
-				Instantiate(brutePrefab, bruteSpawner.position + new Vector3(0f, 1f, 0f), bruteSpawner.rotation);
+				Instantiate(brutePrefab, bruteSpawner.position + new Vector3(2f, 1f, 0f), bruteSpawner.rotation);
 				brute.enabled = enabled;
 				limit = false;
 				

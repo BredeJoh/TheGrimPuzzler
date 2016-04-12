@@ -73,9 +73,10 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D other){
 		
 		if(other.gameObject.tag == "spikes")
-        {			
-			DamagePlayer (3);		
-		}
+        {
+            Instantiate(playerDeathParticle, player.transform.position, player.transform.rotation);
+            GameMaster.KillPlayer(this);
+        }
         else if (other.gameObject.tag == "enemySkele")
         {
 			DamagePlayer (1);

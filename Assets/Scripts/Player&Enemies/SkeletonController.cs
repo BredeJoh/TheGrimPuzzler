@@ -89,7 +89,7 @@ public class SkeletonController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "spikes")
+        if (other.gameObject.tag == "spikes" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
         {
 			Instantiate (deathParticle, transform.position, transform.rotation);
             GameMaster.KillSkeleton(this);
