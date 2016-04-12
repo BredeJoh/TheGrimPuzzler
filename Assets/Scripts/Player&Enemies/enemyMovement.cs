@@ -33,7 +33,7 @@ public class enemyMovement : MonoBehaviour {
         PlayerDistance = gameObject.transform.position.x - playerBody2D.transform.position.x;
         PlayerYDistance = gameObject.transform.position.y - playerBody2D.transform.position.y;
 
-        if (PlayerYDistance > 7 || PlayerYDistance < -7)
+        if (PlayerYDistance > 5 || PlayerYDistance < -5)
         {
             playerTooHigh = true;
             
