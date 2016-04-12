@@ -5,7 +5,6 @@ public class bruteMovement : MonoBehaviour
 {
 
     Rigidbody2D body2D;
-    public Transform firePoint;
     GameObject playerBody2D;
     float speed = 3f;
     private bool moveRight = true;
@@ -18,7 +17,6 @@ public class bruteMovement : MonoBehaviour
     public GameObject bruteSpawn;
     public GameObject skeleSpawn;
     public GameObject banshSpawn;
-    public Transform Bone_Projectileprefab;
 
 	Animator anim;
 
@@ -28,7 +26,6 @@ public class bruteMovement : MonoBehaviour
 		anim = gameObject.GetComponent<Animator> ();
         body2D = GetComponent<Rigidbody2D>();
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
-        firePoint = firePoint.transform;
 
     }
 

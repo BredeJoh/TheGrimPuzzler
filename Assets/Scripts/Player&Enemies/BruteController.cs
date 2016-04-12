@@ -16,9 +16,9 @@ public class BruteController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Check if Brute exists
+        // Check if Brute exists
 
-		if (GameMaster.currentPlayerBrute == true) {
+        if (GameMaster.currentPlayerBrute == true) {
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);
