@@ -12,11 +12,11 @@ public class UI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		for (int i=0; i<6; i++){
+		for (int i=0; i<7; i++){
 			if (i == 3 || i == 4) {
 				uiImage [i].GetComponent<CanvasGroup> ().alpha = 1f;
 			} else {
-				uiImage [i].GetComponent<CanvasGroup> ().alpha = 0.2f;
+				uiImage [i].GetComponent<CanvasGroup> ().alpha = 0.5f;
 			}
 		}
 
@@ -29,39 +29,48 @@ public class UI : MonoBehaviour {
 
 		// Sjekker om du har en hjelper i scena
 		if (activePlayer[0] == null){
-			uiImage [0].GetComponent<CanvasGroup> ().alpha = 0.2f;
+			uiImage [0].GetComponent<CanvasGroup> ().alpha = 0.5f;
 			FindSkeleton ();
-		} else if (activePlayer[0] != null){
+		} else {
 			SkeletonIsActive ();
-		} 
+		}
 		if (activePlayer[1] == null){
-			uiImage [1].GetComponent<CanvasGroup> ().alpha = 0.2f;
+			uiImage [1].GetComponent<CanvasGroup> ().alpha = 0.5f;
 			FindBrute ();
-		} else if (activePlayer[1] != null){
+		} else {
 			BruteIsActive ();
 		} 
 		if (activePlayer[2] == null){
-			uiImage [2].GetComponent<CanvasGroup> ().alpha = 0.2f;
+			uiImage [2].GetComponent<CanvasGroup> ().alpha = 0.5f;
 			FindBanshee ();
-		} else if (activePlayer[2] != null){
+		} else {
 			BansheeIsActive ();
 		}
 
 		// Viser hvilken karakter du kontrollerer
 		if (GameMaster.currentPlayerSkeleton) {
 			uiImage [0].GetComponent<Image> ().color = Color.green;
+			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
+			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
 			uiImage [0].GetComponent<Image> ().color = Color.white;
 		}
 		if (GameMaster.currentPlayerBrute) {
 			uiImage [1].GetComponent<Image> ().color = Color.blue;
+			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
+			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
 			uiImage [1].GetComponent<Image> ().color = Color.white;
 		}
 		if (GameMaster.currentPlayerBanshee) {
 			uiImage [2].GetComponent<Image> ().color = Color.red;
+			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
+			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
 			uiImage [2].GetComponent<Image> ().color = Color.white;
+		}
+		if (GameMaster.currentPlayer){
+			uiImage [5].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 	}
 
