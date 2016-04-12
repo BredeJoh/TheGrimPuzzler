@@ -8,7 +8,7 @@ public class enemyMovement : MonoBehaviour {
     GameObject playerBody2D;
     float speed = 3f;
     private bool moveRight = true;
-    private float PlayerDistance = 100f;
+    public float PlayerDistance = 100f;
     private float PlayerYDistance = 100f;
     private bool playerTooHigh = true;
 
@@ -18,6 +18,8 @@ public class enemyMovement : MonoBehaviour {
 	public GameObject skeleSpawn;
 	public GameObject banshSpawn;
     public Transform Bone_Projectileprefab;
+
+	public GameObject[] deathParticle;
 
 	// Use this for initialization
 	void Start () {
@@ -96,6 +98,7 @@ public class enemyMovement : MonoBehaviour {
 			    Instantiate(bruteSpawn, transform.position, transform.rotation);
 			    Destroy (this.gameObject);
 		    } else if (gameObject.tag == "enemySkele"){
+				Instantiate (deathParticle[0], transform.position, transform.rotation);
 			    Instantiate(skeleSpawn, transform.position, transform.rotation);
 			    Destroy (this.gameObject);
 		    } else if (gameObject.tag == "enemyBanshee"){

@@ -26,6 +26,10 @@ public class BruteController : MonoBehaviour {
 			} else {
 				body2D.velocity = new Vector2 (0f, body2D.velocity.y);
 			}
+            if (Input.GetKey(KeyCode.S))
+            {
+                Destroy(gameObject);
+            }
 		} else {
 			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,0);
 		}

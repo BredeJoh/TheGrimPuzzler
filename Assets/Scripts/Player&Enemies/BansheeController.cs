@@ -4,7 +4,7 @@ using System.Collections;
 public class BansheeController : MonoBehaviour {
 
 	float speed = 7.0f; 
-	float jumpSpeed = 6.0f;
+	float jumpSpeed = 8.0f;
 	bool isGrounded = false;
 	Rigidbody2D body2D;
     public Transform firePoint;
@@ -31,9 +31,13 @@ public class BansheeController : MonoBehaviour {
 			} else {
 				body2D.velocity = new Vector2 (0f, body2D.velocity.y);
 			}
+            if (Input.GetKey(KeyCode.S))
+            {
+                Destroy(gameObject);
+            }
 
-			// Jumping
-			if (Input.GetKeyDown (KeyCode.UpArrow) && isGrounded == true) {
+            // Jumping
+            if (Input.GetKeyDown (KeyCode.UpArrow) && isGrounded == true) {
 				body2D.velocity = new Vector2 (body2D.velocity.x, jumpSpeed);
 				isGrounded = false;
 			}

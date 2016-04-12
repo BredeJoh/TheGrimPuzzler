@@ -19,6 +19,7 @@ public class spellMovement : MonoBehaviour {
         {
             throwDirection = banshee.transform.localScale.x * -1;
         }
+        StartCoroutine(Dissapear());
 
     }
 	
@@ -40,6 +41,12 @@ public class spellMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other)
     {
 
+        Destroy(gameObject);
+    }
+
+    IEnumerator Dissapear()
+    {
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }

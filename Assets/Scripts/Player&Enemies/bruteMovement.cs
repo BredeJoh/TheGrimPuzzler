@@ -38,12 +38,11 @@ public class bruteMovement : MonoBehaviour
         if (PlayerYDistance > 5 || PlayerYDistance < -5)
         {
             playerTooHigh = true;
-            print(PlayerYDistance);
+   
         }
         else
         {
             playerTooHigh = false;
-            print(PlayerYDistance);
         }
 
         if (PlayerDistance <= 3.5f && PlayerDistance > -3.5f && playerTooHigh == false)

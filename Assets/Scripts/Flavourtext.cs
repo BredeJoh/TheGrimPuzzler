@@ -10,15 +10,17 @@ public class Flavourtext : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		flavour = new GameObject[3];
+		flavour = new GameObject[4];
 
 		//Finding skeleton flavour text
 		flavour [0] = GameObject.Find ("SkeleFlav");
 		flavour [1] = GameObject.Find ("BruteFlav");
 		flavour [2] = GameObject.Find ("BansheeFlav");
-		flavour [0].SetActive (false);
-		flavour [1].SetActive (false);
-		flavour [2].SetActive (false);
+		flavour [3] = GameObject.Find ("PlayerFlav");
+
+		for(int i=0; i<4; i++){
+			flavour [i].SetActive (false);
+		}
 	}
 
 	// Update is called once per frame
@@ -33,8 +35,11 @@ public class Flavourtext : MonoBehaviour {
 		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.currentPlayerBanshee && !flavourIsActive){
 			flavour [2].SetActive (true);
 			flavourIsActive = true;
-		}else if (Input.GetKeyDown(KeyCode.Return) && flavourIsActive){
-			for (int i=0; i<3; i++){
+		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.currentPlayer && !flavourIsActive){
+			flavour [3].SetActive (true);
+			flavourIsActive = true;
+		} else if (Input.GetKeyDown(KeyCode.Return) && flavourIsActive){
+			for (int i=0; i<4; i++){
 				flavour [i].SetActive (false);
 			}
 			flavourIsActive = false;
