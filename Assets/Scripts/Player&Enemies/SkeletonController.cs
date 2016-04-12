@@ -31,6 +31,14 @@ public class SkeletonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isGrounded && GameMaster.currentPlayerSkeleton == false)
+        {
+            body2D.isKinematic = true;
+        }
+        else
+        {
+            body2D.isKinematic = false;
+        }
         if (GameMaster.currentPlayerSkeleton == true)
         {
             // Check if Skeleton exists

@@ -21,7 +21,17 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (GameMaster.currentPlayer == true && stunned == false) {
+
+        if (isGrounded && GameMaster.currentPlayer == false)
+        {
+            body2D.isKinematic = true;
+        }
+        else
+        {
+            body2D.isKinematic = false;
+        }
+
+        if (GameMaster.currentPlayer == true && stunned == false) {
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);

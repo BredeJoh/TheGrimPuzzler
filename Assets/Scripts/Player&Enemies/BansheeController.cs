@@ -18,9 +18,18 @@ public class BansheeController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (GameMaster.currentPlayerBanshee == true) {
+        if (isGrounded && GameMaster.currentPlayerBanshee == false)
+        {
+            body2D.isKinematic = true;
+        }
+        else
+        {
+            body2D.isKinematic = false;
+        }
+        if (GameMaster.currentPlayerBanshee == true) {
 			// Check if Skeleton exists
 
+            
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);
