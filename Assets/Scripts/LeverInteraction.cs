@@ -19,6 +19,10 @@ public class LeverInteraction : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
+		if (other.gameObject.tag == "skeleton" && active == false){
+			UI.CanInteract (0);
+		}
+
         if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false)
         {
             bridge.GetComponent<HingeJoint2D>().useMotor = true;
@@ -28,4 +32,10 @@ public class LeverInteraction : MonoBehaviour {
             bridge.tag = "ground";
         }
     }
+
+	void OnTriggerExit2D (Collider2D other){
+		if (other.gameObject.tag == "skeleton") {
+			UI.CanInteract (1);
+		}
+	}
 }
