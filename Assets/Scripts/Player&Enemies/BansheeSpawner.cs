@@ -47,6 +47,7 @@ public class BansheeSpawner : MonoBehaviour {
 		if (other.gameObject.tag == "Player"){
 
 			// Show what button to press
+			UI.CanInteract (0);
 
 			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
 
@@ -57,6 +58,12 @@ public class BansheeSpawner : MonoBehaviour {
 				limit = false;
 
 			}
+		}
+	}
+
+	void OnTriggerExit2D (Collider2D other){
+		if (other.gameObject.tag == "Player") {
+			UI.CanInteract (1);
 		}
 	}
 }

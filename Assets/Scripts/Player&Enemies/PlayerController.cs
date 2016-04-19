@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour {
     private bool climb = false;
 	Rigidbody2D body2D;
 
-
 	// Use this for initialization
 	void Start () {
 		transform.position = spawnpoint.position;

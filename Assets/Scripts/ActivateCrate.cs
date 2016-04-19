@@ -31,20 +31,31 @@ public class ActivateCrate : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
+		if ((other.gameObject.tag == "Player" || other.gameObject.tag == "banshee")) {
+			UI.CanInteract (0);
 
-		if ((other.gameObject.tag == "Player" || other.gameObject.tag == "banshee") && Input.GetKeyDown(KeyCode.DownArrow)){
+			if (Input.GetKeyDown (KeyCode.DownArrow)) {
 
-			currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 2;
-			currentCrate.GetComponent<Rigidbody2D> ().isKinematic = false;
+				currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 2;
+				currentCrate.GetComponent<Rigidbody2D> ().isKinematic = false;
 
-			gameObject.GetComponent<BoxCollider2D>().enabled = !enabled;
+				gameObject.GetComponent<BoxCollider2D> ().enabled = !enabled;
 
+			}
+		} 
+	}
+
+	void OnTriggerExit2D (Collider2D other){
+
+		if (other.gameObject.tag == "Player" || other.gameObject.tag == "banshee"){
+			UI.CanInteract (1);
 		}
 	}
 
 	// Respawning crate
 	IEnumerator RespawnCrate (float waitIn){
 
+		UI.CanInteract (1);
 		Debug.Log ("---Respawning Crate---");
 		yield return new WaitForSeconds (waitIn);
 		Debug.Log ("---Waited for "+waitIn+" seconds");
