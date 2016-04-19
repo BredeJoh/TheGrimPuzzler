@@ -49,7 +49,7 @@ public class spellMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other)
     {
 
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
 
     IEnumerator Dissapear()

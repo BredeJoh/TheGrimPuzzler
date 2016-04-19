@@ -75,11 +75,17 @@ public class PlayerController : MonoBehaviour {
             Vector2 knockBack = other.gameObject.transform.position - gameObject.transform.position;
             if (knockBack.x > 0)
             {
+
                 body2D.velocity = new Vector2(-speed, speed);
+                if (other.gameObject.tag == "projectile")
+                {
+                    Destroy(other.gameObject);
+                }
             }
             else
             {
                 body2D.velocity = new Vector2(speed, speed);
+                Destroy(other.gameObject);
             }
         }
         
