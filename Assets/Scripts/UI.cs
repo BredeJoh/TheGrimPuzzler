@@ -6,9 +6,9 @@ public class UI : MonoBehaviour {
 
 	public Image[] uiImage;
 
-	GameObject[] activePlayer;
+	//GameObject[] activePlayer;
 
-	float nextTimeToSearch = 0;
+	//static float nextTimeToSearch = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class UI : MonoBehaviour {
 			}
 		}
 
-		activePlayer = new GameObject[3];
+		//activePlayer = new GameObject[3];
 
 	}
 	
@@ -28,23 +28,20 @@ public class UI : MonoBehaviour {
 	void Update () {
 
 		// Sjekker om du har en hjelper i scena
-		if (activePlayer[0] == null){
-			uiImage [0].GetComponent<CanvasGroup> ().alpha = 0.5f;
-			FindSkeleton ();
-		} else {
+		if (CameraFollow2D.skeleton != null) {
 			SkeletonIsActive ();
+		} else {
+			uiImage [0].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
-		if (activePlayer[1] == null){
-			uiImage [1].GetComponent<CanvasGroup> ().alpha = 0.5f;
-			FindBrute ();
-		} else {
+		if (CameraFollow2D.brute != null){
 			BruteIsActive ();
-		} 
-		if (activePlayer[2] == null){
-			uiImage [2].GetComponent<CanvasGroup> ().alpha = 0.5f;
-			FindBanshee ();
 		} else {
+			uiImage [1].GetComponent<CanvasGroup> ().alpha = 0.5f;
+		} 
+		if (CameraFollow2D.banshee != null){
 			BansheeIsActive ();
+		} else {
+			uiImage [2].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 
 		// Viser hvilken karakter du kontrollerer
@@ -71,6 +68,7 @@ public class UI : MonoBehaviour {
 		}
 		if (GameMaster.currentPlayer){
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 0.5f;
+			uiImage [6].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 	}
 
@@ -86,7 +84,7 @@ public class UI : MonoBehaviour {
 	}
 
 	// Prøver å finne skeleton
-	void FindSkeleton () {
+	/*public static void FindSkeleton () {
 		if (nextTimeToSearch <= Time.time) {
 			GameObject searchResult = GameObject.FindGameObjectWithTag ("skeleton");	
 			if (searchResult != null)
@@ -96,7 +94,7 @@ public class UI : MonoBehaviour {
 	}
 
 	// Prøver å finne brute
-	void FindBrute () {
+	public static void FindBrute () {
 		if (nextTimeToSearch <= Time.time) {
 			GameObject searchResult = GameObject.FindGameObjectWithTag ("brute");	
 			if (searchResult != null)
@@ -106,12 +104,12 @@ public class UI : MonoBehaviour {
 	}
 
 	// Prøver å finne banshee
-	void FindBanshee (){
+	public static void FindBanshee (){
 		if (nextTimeToSearch <= Time.time) {
 			GameObject searchResult = GameObject.FindGameObjectWithTag ("banshee");	
 			if (searchResult != null)
 				activePlayer[2] = searchResult;
 			nextTimeToSearch = Time.time + 0.5f;
 		}
-	}
+	}*/
 }

@@ -33,7 +33,7 @@ public class GameMaster : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Q) && !currentPlayerSkeleton) {
+		if (Input.GetKeyDown (KeyCode.Q) && !currentPlayerSkeleton && CameraFollow2D.skeleton != null) {
 			// Focus on Skeleton
 			currentPlayerSkeleton = true;
 			currentPlayer = false;
@@ -46,7 +46,7 @@ public class GameMaster : MonoBehaviour {
 			currentPlayer = true;
 			currentPlayerBanshee = false;
 		}
-		if (Input.GetKeyDown (KeyCode.W) && !currentPlayerBrute) {
+		if (Input.GetKeyDown (KeyCode.W) && !currentPlayerBrute && CameraFollow2D.brute != null) {
 			// Focus on Brute
 			currentPlayerSkeleton = false;
 			currentPlayerBrute = true;
@@ -59,7 +59,7 @@ public class GameMaster : MonoBehaviour {
 			currentPlayer = true;
 			currentPlayerBanshee = false;
 		}
-		if (Input.GetKeyDown (KeyCode.E) && !currentPlayerBanshee) {
+		if (Input.GetKeyDown (KeyCode.E) && !currentPlayerBanshee && CameraFollow2D.banshee != null) {
 			// Focus on Banshee
 			currentPlayerSkeleton = false;
 			currentPlayerBrute = false;

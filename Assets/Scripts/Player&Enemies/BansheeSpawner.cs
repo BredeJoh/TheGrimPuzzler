@@ -52,6 +52,8 @@ public class BansheeSpawner : MonoBehaviour {
 
 				Instantiate(bansheePrefab, bansheeSpawner.position + new Vector3 (2f, 1f, 0f), bansheeSpawner.rotation);
 
+				CameraFollow2D.FindBanshee ();
+
 				limit = false;
 
 			}

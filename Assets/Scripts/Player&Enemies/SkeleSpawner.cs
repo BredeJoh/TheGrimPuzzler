@@ -52,6 +52,8 @@ public class SkeleSpawner : MonoBehaviour {
 
 				Instantiate(skeletonPrefab, skeletonSpawner.position + new Vector3(2f, 1f, 0f), skeletonSpawner.rotation);
 
+				CameraFollow2D.FindSkeleton ();
+
 				limit = false;
 
 			}

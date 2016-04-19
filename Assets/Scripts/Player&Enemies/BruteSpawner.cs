@@ -52,6 +52,8 @@ public class BruteSpawner : MonoBehaviour {
 				
 				Instantiate(brutePrefab, bruteSpawner.position + new Vector3(2f, 1f, 0f), bruteSpawner.rotation);
 
+				CameraFollow2D.FindBrute ();
+
 				limit = false;
 				
 			}
