@@ -122,7 +122,14 @@ public class BansheeMovement : MonoBehaviour
     IEnumerator attackAndWait(float WaitTime)
     {
         throws = true;
-        Instantiate(Bone_Projectileprefab, firePoint.position, gameObject.transform.rotation);
+        if (gameObject.transform.localScale.x == 1)
+        {
+            Instantiate(Bone_Projectileprefab, firePoint.position, Quaternion.Euler(0, 0, 180));
+        }
+        else
+        {
+            Instantiate(Bone_Projectileprefab, firePoint.position, Quaternion.Euler(0, 0, 0));
+        }
         yield return new WaitForSeconds(WaitTime);
         throws = false;
     }

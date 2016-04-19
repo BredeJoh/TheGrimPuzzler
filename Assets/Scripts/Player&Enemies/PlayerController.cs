@@ -85,7 +85,10 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 body2D.velocity = new Vector2(speed, speed);
-                Destroy(other.gameObject);
+                if (other.gameObject.tag == "projectile")
+                {
+                    Destroy(other.gameObject);
+                }
             }
         }
         

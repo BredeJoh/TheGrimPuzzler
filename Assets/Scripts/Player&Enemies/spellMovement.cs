@@ -3,25 +3,21 @@ using System.Collections;
 
 public class spellMovement : MonoBehaviour {
 
-    Rigidbody2D body2D;
     public int throwspeed = 8;
     public float throwDirection = 0f;
-    GameObject playerBody2D;
     GameObject banshee;
 
     // Use this for initialization
     void Start() {
 
         banshee = GameObject.FindGameObjectWithTag("banshee");
-        playerBody2D = GameObject.FindGameObjectWithTag("Player");
-        throwDirection = playerBody2D.transform.position.x - gameObject.transform.position.x;
-        if (throwDirection < 1.2f && throwDirection > 0f)
+        if (gameObject.transform.rotation == Quaternion.Euler(0, 0, 180))
         {
-            throwDirection -= 1.2f;
+            throwDirection = -1f;
         }
-        else if (throwDirection > -1.2f && throwDirection < 0f)
+        else
         {
-            throwDirection += 1.2f;
+            throwDirection = 1f;
         }
         if (GameMaster.currentPlayerBanshee == true)
         {
@@ -51,7 +47,7 @@ public class spellMovement : MonoBehaviour {
 
        // Destroy(gameObject);
     }
-
+    
     IEnumerator Dissapear()
     {
         yield return new WaitForSeconds(2f);
