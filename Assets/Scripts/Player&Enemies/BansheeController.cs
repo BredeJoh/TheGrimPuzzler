@@ -11,10 +11,14 @@ public class BansheeController : MonoBehaviour {
     public Transform Bone_Projectileprefab;
     bool throws = false;
     private bool climb = false;
+
+	Animator anim;
+
     // Use this for initialization
     void Start () {
 		body2D = GetComponent<Rigidbody2D> ();
         firePoint = firePoint.transform;
+		anim = gameObject.GetComponent<Animator> ();
     }
 
 	// Update is called once per frame
@@ -33,12 +37,15 @@ public class BansheeController : MonoBehaviour {
             
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {
+				anim.SetInteger ("animationstate", 1);
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);
 				transform.localScale = new Vector2 (1f, 1f);
 			} else if (Input.GetKey (KeyCode.RightArrow)) {
+				anim.SetInteger ("animationstate", 1);
 				body2D.velocity = new Vector2 (speed, body2D.velocity.y);
 				transform.localScale = new Vector2 (-1f, 1f);
 			} else {
+				anim.SetInteger ("animationstate", 0);
 				body2D.velocity = new Vector2 (0f, body2D.velocity.y);
 			}
             if (Input.GetKey(KeyCode.S))
