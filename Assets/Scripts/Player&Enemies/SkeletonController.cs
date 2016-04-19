@@ -11,8 +11,9 @@ public class SkeletonController : MonoBehaviour
     bool throws = false;
     public Transform firePoint;
     public Transform Bone_Projectileprefab;
+    private bool climb = false;
 
-	public GameObject deathParticle;
+    public GameObject deathParticle;
 
 	Animator anim;
 
@@ -82,6 +83,12 @@ public class SkeletonController : MonoBehaviour
                 isGrounded = false;
 				anim.SetInteger ("animationstate", 2);
             }
+            // climbing
+            else if (Input.GetKey(KeyCode.UpArrow) && climb == true)
+            {
+                body2D.velocity = new Vector2(body2D.velocity.x, speed);
+                isGrounded = false;
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (throws == false)
@@ -110,9 +117,17 @@ public class SkeletonController : MonoBehaviour
             isGrounded = true;
 			anim.SetInteger ("animationstate", 0);
         }
+        if (other.gameObject.tag == "ladder")
+        {
+            climb = true;
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
+        if (other.gameObject.tag == "ladder")
+        {
+            climb = false;
+        }
         if (other.gameObject.tag == "ground")
         {
             isGrounded = false;

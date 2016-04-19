@@ -49,8 +49,10 @@ public class BoneScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+        transform.Rotate(0, 0, Time.deltaTime * 720f);
+
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {

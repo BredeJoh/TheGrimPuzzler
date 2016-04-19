@@ -10,6 +10,7 @@ public class BansheeController : MonoBehaviour {
     public Transform firePoint;
     public Transform Bone_Projectileprefab;
     bool throws = false;
+    private bool climb = false;
     // Use this for initialization
     void Start () {
 		body2D = GetComponent<Rigidbody2D> ();
@@ -50,6 +51,12 @@ public class BansheeController : MonoBehaviour {
 				body2D.velocity = new Vector2 (body2D.velocity.x, jumpSpeed);
 				isGrounded = false;
 			}
+            // climbing
+            else if (Input.GetKey(KeyCode.UpArrow) && climb == true)
+            {
+                body2D.velocity = new Vector2(body2D.velocity.x, speed);
+                isGrounded = false;
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (throws == false)
@@ -71,6 +78,24 @@ public class BansheeController : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "ladder")
+        {
+            climb = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "ladder")
+        {
+            climb = false;
+        }
+        if (other.gameObject.tag == "ground")
+        {
+            isGrounded = false;
+        }
+    }
     IEnumerator attackAndWait(float WaitTime)
     {
         throws = true;
