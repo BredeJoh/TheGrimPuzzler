@@ -60,7 +60,7 @@ public class GameMaster : MonoBehaviour {
 			currentPlayerBanshee = false;
 		}
 		if (Input.GetKeyDown (KeyCode.E) && !currentPlayerBanshee) {
-			// Focus on Brute
+			// Focus on Banshee
 			currentPlayerSkeleton = false;
 			currentPlayerBrute = false;
 			currentPlayer = false;
