@@ -44,12 +44,14 @@ public class BruteSpawner : MonoBehaviour {
 	}
 	
 	void OnTriggerStay2D(Collider2D other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && limit == true) {
 			
 			// Show what button to press
 			UI.CanInteract (0);
-			
-			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
+		} else if (limit == false){
+			UI.CanInteract (0);
+		}
+			if(Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "Player" && limit == true){
 				
 				Instantiate(brutePrefab, bruteSpawner.position + new Vector3(2f, 1f, 0f), bruteSpawner.rotation);
 
@@ -58,7 +60,6 @@ public class BruteSpawner : MonoBehaviour {
 				limit = false;
 				
 			}
-		}
 	}
 
 	void OnTriggerExit2D (Collider2D other){
