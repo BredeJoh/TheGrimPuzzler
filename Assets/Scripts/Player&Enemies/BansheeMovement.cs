@@ -21,6 +21,7 @@ public class BansheeMovement : MonoBehaviour
     public Transform Bone_Projectileprefab;
 
     public GameObject[] deathParticle;
+    Animator anim;
 
     // Use this for initialization
     void Start()
@@ -28,7 +29,7 @@ public class BansheeMovement : MonoBehaviour
         body2D = GetComponent<Rigidbody2D>();
         playerBody2D = GameObject.FindGameObjectWithTag("Player");
         firePoint = firePoint.transform;
-
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,12 +55,18 @@ public class BansheeMovement : MonoBehaviour
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
+            anim.SetInteger("animationstate", 1);
 
         }
         else if (moveRight == false && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(-speed, body2D.velocity.y);
             transform.localScale = new Vector2(1f, 1f);
+            anim.SetInteger("animationstate", 1);
+        }
+        else
+        {
+            anim.SetInteger("animationstate", 0);
         }
 
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
