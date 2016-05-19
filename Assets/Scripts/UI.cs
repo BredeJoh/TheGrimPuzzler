@@ -66,9 +66,9 @@ public class UI : MonoBehaviour {
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 
-		if (interactable == true) {
+		if (interactable == true && GameMaster.activePlayer[0]) {
 			uiImage [4].GetComponent<CanvasGroup> ().alpha = 1f;
-		} else {
+		} else if (interactable == false){
 			uiImage [4].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 	}
@@ -87,7 +87,7 @@ public class UI : MonoBehaviour {
 	public static void CanInteract (int tallIn){
 		if (tallIn == 0) {
 			interactable = true;
-		} else {
+		} else  if (tallIn == 1){
 			interactable = false;
 		}
 	}
