@@ -45,7 +45,7 @@ public class bruteMovement : MonoBehaviour
             playerTooHigh = false;
         }
 
-        if (PlayerDistance <= 3.5f && PlayerDistance > -3.5f && playerTooHigh == false)
+        if (PlayerDistance <= 3f && PlayerDistance > -3f && playerTooHigh == false)
         {
 			
 
@@ -65,14 +65,14 @@ public class bruteMovement : MonoBehaviour
         }
 
 
-        if (moveRight && (PlayerDistance > 3.5f || PlayerDistance < -3.5f || playerTooHigh == true))
+        if (moveRight && (PlayerDistance > 3f || PlayerDistance < -3f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
             transform.localScale = new Vector2(-1f, 1f);
 			anim.SetInteger ("animationstate", 0);
 
         }
-        else if (moveRight == false && (PlayerDistance > 3.5f || PlayerDistance < -3.5f || playerTooHigh == true))
+        else if (moveRight == false && (PlayerDistance > 3f || PlayerDistance < -3f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(-speed, body2D.velocity.y);
             transform.localScale = new Vector2(1f, 1f);
@@ -121,11 +121,13 @@ public class bruteMovement : MonoBehaviour
     IEnumerator attackAndWait(float WaitTime)
     {
         attack = true;
-        yield return new WaitForSeconds(1f);
+        anim.SetInteger("animationstate", 2);
+        yield return new WaitForSeconds(0.5f);
         gameObject.GetComponentInChildren<EdgeCollider2D>().enabled = true;
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponentInChildren<EdgeCollider2D>().enabled = false;
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(1f);
+        anim.SetInteger("animationstate", 0);
         attack = false;
     }
 }
