@@ -95,6 +95,33 @@ public class PlayerController : MonoBehaviour {
         
     }
 
+    void OnTriggerEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "enemySkele" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBrute" || other.gameObject.tag == "enemyBanshee")
+        {
+            stunned = true;
+            Vector2 knockBack = other.gameObject.transform.position - gameObject.transform.position;
+            if (knockBack.x > 0)
+            {
+
+                body2D.velocity = new Vector2(-speed, speed);
+                if (other.gameObject.tag == "projectile")
+                {
+                    Destroy(other.gameObject);
+                }
+            }
+            else
+            {
+                body2D.velocity = new Vector2(speed, speed);
+                if (other.gameObject.tag == "projectile")
+                {
+                    Destroy(other.gameObject);
+                }
+            }
+        }
+
+    }
+
     void OnCollisionExit2D(Collision2D other)
     {
         /*if (other.gameObject.tag == "ground")
