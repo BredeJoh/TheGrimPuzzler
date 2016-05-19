@@ -40,28 +40,28 @@ public class UI : MonoBehaviour {
 		}
 
 		// Viser hvilken karakter du kontrollerer
-		if (GameMaster.currentPlayerSkeleton) {
+		if (GameMaster.activePlayer[1]) {
 			uiImage [0].GetComponent<Image> ().color = Color.green;
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
 			uiImage [0].GetComponent<Image> ().color = Color.white;
 		}
-		if (GameMaster.currentPlayerBrute) {
+		if (GameMaster.activePlayer[2]) {
 			uiImage [1].GetComponent<Image> ().color = Color.blue;
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
 			uiImage [1].GetComponent<Image> ().color = Color.white;
 		}
-		if (GameMaster.currentPlayerBanshee) {
+		if (GameMaster.activePlayer[3]) {
 			uiImage [2].GetComponent<Image> ().color = Color.red;
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
 			uiImage [2].GetComponent<Image> ().color = Color.white;
 		}
-		if (GameMaster.currentPlayer){
+		if (GameMaster.activePlayer[0]){
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 0.5f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}

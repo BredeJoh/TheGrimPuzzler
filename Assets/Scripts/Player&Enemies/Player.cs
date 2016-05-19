@@ -13,8 +13,12 @@ public class Player : MonoBehaviour {
     //Text healthText;
     bool invunrable = false;
     Rigidbody2D body2D;
+
 	public Sprite[] healthBar;
-	GameObject health;
+
+	public Sprite[] healthUI;
+
+	Image health;
 
 	public GameObject playerDeathParticle;
 	GameObject player;
@@ -28,28 +32,29 @@ public class Player : MonoBehaviour {
 		player = this.gameObject;
 
         body2D = gameObject.GetComponent<Rigidbody2D>();
-        //healthText = GameObject.Find("Health").GetComponent<Text>();
-        //healthText.text = "Health: " + playerStats.PlayerHealth;
-		health = GameObject.Find ("Health_image");
-		health.GetComponent<SpriteRenderer>().sprite = healthBar[0];
+		health = GameObject.Find ("SoulBar").GetComponent<Image> ();
 	}
 		
 	// Update is called once per frame
 	void Update () {
 
 		if (playerStats.PlayerHealth == 3){
-			health.GetComponent<SpriteRenderer>().sprite = healthBar[0];
-		} else if (playerStats.PlayerHealth == 2){
-			health.GetComponent<SpriteRenderer>().sprite = healthBar[1];
-		} else if (playerStats.PlayerHealth ==1){
-			health.GetComponent<SpriteRenderer>().sprite = healthBar[2];
-		} else if (playerStats.PlayerHealth == 0){
-			health.GetComponent<SpriteRenderer>().sprite = healthBar[3];
-		} else if (playerStats.PlayerHealth < 0){
-			health.GetComponent<SpriteRenderer>().sprite = healthBar[3];
-		}
+			health.sprite = healthUI [0];
 
-        //healthText.text = "Health: " + playerStats.PlayerHealth;
+		} else if (playerStats.PlayerHealth == 2){
+			health.sprite = healthUI [1];
+
+		} else if (playerStats.PlayerHealth ==1){
+			health.sprite = healthUI [2];
+
+		} else if (playerStats.PlayerHealth == 0){
+			health.sprite = healthUI [3];
+
+		} else if (playerStats.PlayerHealth < 0){
+			health.sprite = healthUI [3];
+
+		}
+			
     }
 
 	public void DamagePlayer(int damage){
@@ -62,6 +67,7 @@ public class Player : MonoBehaviour {
 		if (playerStats.PlayerHealth <= 0) {
 
 			Instantiate (playerDeathParticle, player.transform.position, player.transform.rotation);
+			health.sprite = healthUI [3];
 			GameMaster.KillPlayer(this);
 		}
 	}
@@ -95,13 +101,6 @@ public class Player : MonoBehaviour {
 			DamagePlayer (1);
         }
     }
-
-	/*void PlayerIsDamaged (int damageIn){
-
-		health.GetComponent<SpriteRenderer>().sprite = healthBar[i+1];
-		i++;
-		DamagePlayer (damageIn);
-	}*/
 
 	IEnumerator OnTriggerEnter2D (Collider2D other){
 

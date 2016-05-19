@@ -38,18 +38,20 @@ public class SkeleSpawner : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "ground"){
-		gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f,0f);
-		gameObject.GetComponent<Rigidbody2D> ().gravityScale = 0f;
+			gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f,0f);
+			gameObject.GetComponent<Rigidbody2D> ().gravityScale = 0f;
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && limit == true) {
 
 			// Show what button to press
 			UI.CanInteract (0);
-
-			if(Input.GetKeyDown(KeyCode.DownArrow) && limit == true){
+		} else if (limit == false){
+			UI.CanInteract (1);
+		}
+			if(Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "Player" && limit == true){
 
 				Instantiate(skeletonPrefab, skeletonSpawner.position + new Vector3(2f, 1f, 0f), skeletonSpawner.rotation);
 
@@ -58,7 +60,7 @@ public class SkeleSpawner : MonoBehaviour {
 				limit = false;
 
 			}
-		}
+		
 	}
 
 	void OnTriggerExit2D (Collider2D other){

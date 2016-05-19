@@ -23,7 +23,7 @@ public class BansheeController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (isGrounded && GameMaster.currentPlayerBanshee == false)
+		if (isGrounded && GameMaster.activePlayer[3] == false)
         {
             body2D.isKinematic = true;
         }
@@ -31,8 +31,8 @@ public class BansheeController : MonoBehaviour {
         {
             body2D.isKinematic = false;
         }
-        if (GameMaster.currentPlayerBanshee == true) {
-			// Check if Skeleton exists
+		if (GameMaster.activePlayer[3] == true) {
+			// Check if Banshee exists
 
             
 			// Movement

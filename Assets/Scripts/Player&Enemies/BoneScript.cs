@@ -36,7 +36,7 @@ public class BoneScript : MonoBehaviour {
         {
             throwDirection = -1;
         }
-        if (GameMaster.currentPlayerSkeleton == true)
+		if (GameMaster.activePlayer[1] == true)
         {
             throwDirection = Skeleton.transform.localScale.x * -1f;
         }
