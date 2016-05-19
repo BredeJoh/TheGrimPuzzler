@@ -12,6 +12,7 @@ public class BansheeMovement : MonoBehaviour
     public float PlayerDistance = 100f;
     private float PlayerYDistance = 100f;
     private bool playerTooHigh = true;
+    public bool stay = false;
 
     bool throws = false;
 
@@ -63,6 +64,10 @@ public class BansheeMovement : MonoBehaviour
             anim.SetInteger("animationstate", 1);
         }
         else
+        {
+            anim.SetInteger("animationstate", 0);
+        }
+        if (stay)
         {
             anim.SetInteger("animationstate", 0);
         }
@@ -121,6 +126,14 @@ public class BansheeMovement : MonoBehaviour
                 Instantiate(banshSpawn, transform.position, transform.rotation);
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "stay")
+        {
+            stay = true;
         }
     }
 
