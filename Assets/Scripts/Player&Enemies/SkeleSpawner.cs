@@ -52,7 +52,7 @@ public class SkeleSpawner : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D other){
 		if (other.gameObject.tag == "Player" && limit == true) {
 
-			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && limit == true) {
+			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && GameMaster.activePlayer[0] && limit == true) {
 
 				Instantiate (skeletonPrefab, skeletonSpawner.position + new Vector3 (2f, 1f, 0f), skeletonSpawner.rotation);
 

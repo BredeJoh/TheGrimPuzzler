@@ -7,10 +7,13 @@ public class CameraFollow2D : MonoBehaviour {
 	float dampTime = 0.3f;
 	Vector3 velocity = Vector3.zero;
 	public Transform target;
+
+	// Variables for witch player-objects are currently in the scene
 	public static Transform player;
 	public static Transform skeleton;
 	public static Transform brute;
 	public static Transform banshee;
+
 	static float nextTimeToSearch = 0;
 
 	void Start (){
@@ -26,7 +29,6 @@ public class CameraFollow2D : MonoBehaviour {
 		}
 		if(GameMaster.activePlayer[1]){
 
-			//FindSkeleton();
 			if (skeleton == null){
 				GameMaster.activePlayer[0] = true;
 				GameMaster.activePlayer[1] = false;
@@ -58,7 +60,7 @@ public class CameraFollow2D : MonoBehaviour {
 				}
 		}
 
-		// Searching for player until he spawnes
+		// Searching for player if there is no target
 		if (target == null) {
 			FindPlayer ();
 			return;
@@ -66,13 +68,13 @@ public class CameraFollow2D : MonoBehaviour {
 
 
 
-		// Define Target of the follow
+		// Defineing Target of the follow
 			if (target) {
-			// Define space that camera shall occupy
+			// Defineing space that camera shall occupy
 				Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
 				Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint
-					(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
-			// Follow the player w. smoothing
+					(new Vector3(0.5f, 0.5f, point.z));
+			// Following the player w/ smoothing
 				Vector3 destination = transform.position + delta;
 				transform.position = Vector3.SmoothDamp
 					(transform.position, destination, ref velocity, dampTime);
@@ -85,7 +87,6 @@ public class CameraFollow2D : MonoBehaviour {
 			if (searchResult != null)
 				player = searchResult.transform;
 			nextTimeToSearch = Time.time + 0.5f;
-			
 		}
 	}
 
