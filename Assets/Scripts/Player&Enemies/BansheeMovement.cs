@@ -49,8 +49,6 @@ public class BansheeMovement : MonoBehaviour
 
         }
 
-
-
         if (moveRight && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
@@ -110,7 +108,7 @@ public class BansheeMovement : MonoBehaviour
             if (gameObject.tag == "enemyBrute")
             {
                 Instantiate(bruteSpawn, transform.position, transform.rotation);
-                Destroy(this.gameObject);
+				Destroy(this.gameObject);
             }
             else if (gameObject.tag == "enemySkele")
             {

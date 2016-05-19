@@ -73,7 +73,7 @@ public class UI : MonoBehaviour {
 		}
 	}
 
-	// Lyse opp knappen hvis en av de er i scena
+	// Light the buttons if they are in the scene
 	void SkeletonIsActive (){
 		uiImage [0].GetComponent<CanvasGroup> ().alpha = 1f;
 	}
@@ -84,6 +84,7 @@ public class UI : MonoBehaviour {
 		uiImage [2].GetComponent<CanvasGroup> ().alpha = 1f;
 	}
 
+	// Checks if the player can interact with the object
 	public static void CanInteract (int tallIn){
 		if (tallIn == 0) {
 			interactable = true;

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
             body2D.isKinematic = false;
         }
 
+		// Checkes if the player is active and not in a "stunned" state
 		if (GameMaster.activePlayer[0] == true && stunned == false) {
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {

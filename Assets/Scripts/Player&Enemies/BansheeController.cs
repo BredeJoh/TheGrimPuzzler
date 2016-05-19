@@ -50,7 +50,7 @@ public class BansheeController : MonoBehaviour {
 			}
             if (Input.GetKey(KeyCode.S))
             {
-                Destroy(gameObject);
+				GameMaster.KillBanshee (this);
             }
 
             // Jumping
@@ -82,7 +82,7 @@ public class BansheeController : MonoBehaviour {
 		}
         if (other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
         {
-            Destroy(gameObject);
+			GameMaster.KillBanshee (this);
         }
 	}
     void OnTriggerStay2D(Collider2D other)

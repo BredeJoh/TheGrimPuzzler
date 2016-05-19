@@ -36,6 +36,7 @@ public class BansheeSpawner : MonoBehaviour {
 		}
 	}
 
+	// Stops the spawner when it hits the ground
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "ground") {
 			gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);

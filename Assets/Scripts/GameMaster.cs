@@ -100,5 +100,10 @@ public class GameMaster : MonoBehaviour {
 
 		WhatPlayerIsActive (0);
 	} 
+	public static void KillBanshee (BansheeController banshee){
+		Destroy (banshee.gameObject);
+
+		WhatPlayerIsActive (0);
+	} 
 }
 

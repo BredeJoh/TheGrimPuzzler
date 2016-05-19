@@ -66,11 +66,9 @@ public class CameraFollow2D : MonoBehaviour {
 			return;
 		} 
 
-
-
-		// Defineing Target of the follow
+		// Defining Target of the follow
 			if (target) {
-			// Defineing space that camera shall occupy
+			// Defining space that the camera shall occupy
 				Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
 				Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint
 					(new Vector3(0.5f, 0.5f, point.z));
