@@ -21,37 +21,37 @@ public class CameraFollow2D : MonoBehaviour {
 	void FixedUpdate () {
 
 		// Switching targets acording to the active player
-		if(GameMaster.currentPlayer){
+		if(GameMaster.activePlayer[0]){
 			target = player;
 		}
-		if(GameMaster.currentPlayerSkeleton){
+		if(GameMaster.activePlayer[1]){
 
 			//FindSkeleton();
 			if (skeleton == null){
-				GameMaster.currentPlayer = true;
-				GameMaster.currentPlayerSkeleton = false;
+				GameMaster.activePlayer[0] = true;
+				GameMaster.activePlayer[1] = false;
 			}
 				
 				if (skeleton != null){
 					target = skeleton;
 				}
 		}
-		if(GameMaster.currentPlayerBrute){
+		if(GameMaster.activePlayer[2]){
 
 			if(brute==null){
-				GameMaster.currentPlayer = true;
-				GameMaster.currentPlayerBrute = false;
+				GameMaster.activePlayer[0] = true;
+				GameMaster.activePlayer[2] = false;
 
 				}
 				if (brute != null){
 					target = brute;
 				}
 		}
-		if(GameMaster.currentPlayerBanshee){
+		if(GameMaster.activePlayer[3]){
 
 			if(banshee==null){
-				GameMaster.currentPlayer = true;
-				GameMaster.currentPlayerBanshee = false;
+				GameMaster.activePlayer[0] = true;
+				GameMaster.activePlayer[3] = false;
 			}
 				if (banshee != null){
 					target = banshee;

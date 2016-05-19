@@ -18,7 +18,7 @@ public class BruteController : MonoBehaviour {
 	void Update () {
         // Check if Brute exists
 
-        if (GameMaster.currentPlayerBrute == true) {
+		if (GameMaster.activePlayer[2] == true) {
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);

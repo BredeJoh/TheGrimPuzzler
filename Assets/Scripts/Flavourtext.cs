@@ -26,16 +26,16 @@ public class Flavourtext : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown(KeyCode.Return) && GameMaster.currentPlayerSkeleton && !flavourIsActive){
+		if (Input.GetKeyDown(KeyCode.Return) && GameMaster.activePlayer[1] && !flavourIsActive){
 			flavour [0].SetActive (true);
 			flavourIsActive = true;
-		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.currentPlayerBrute && !flavourIsActive){
+		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.activePlayer[2] && !flavourIsActive){
 			flavour [1].SetActive (true);
 			flavourIsActive = true;
-		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.currentPlayerBanshee && !flavourIsActive){
+		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.activePlayer[3] && !flavourIsActive){
 			flavour [2].SetActive (true);
 			flavourIsActive = true;
-		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.currentPlayer && !flavourIsActive){
+		} else if (Input.GetKeyDown(KeyCode.Return) && GameMaster.activePlayer[0] && !flavourIsActive){
 			flavour [3].SetActive (true);
 			flavourIsActive = true;
 		} else if (Input.GetKeyDown(KeyCode.Return) && flavourIsActive){
