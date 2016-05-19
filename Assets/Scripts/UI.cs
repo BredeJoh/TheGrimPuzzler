@@ -6,6 +6,8 @@ public class UI : MonoBehaviour {
 
 	public Image[] uiImage;
 
+	public Image[] sign;
+
 	static bool interactable = false;
 
 	// Use this for initialization
@@ -70,6 +72,17 @@ public class UI : MonoBehaviour {
 			uiImage [4].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else if (interactable == false){
 			uiImage [4].GetComponent<CanvasGroup> ().alpha = 0.5f;
+		}
+	}
+
+	// Show sign
+	public void WhatSignToShow (int x){
+		if (x == 1) {
+			for (int i = 0; i < 1; i++) {
+				sign [i].GetComponent<CanvasGroup> ().alpha = 0;
+			}
+		} else {
+			sign [x].GetComponent<CanvasGroup> ().alpha = 1;
 		}
 	}
 

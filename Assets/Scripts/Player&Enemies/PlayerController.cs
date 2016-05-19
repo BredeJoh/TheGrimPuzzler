@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour {
         
     }
 
-    void OnTriggerEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "enemySkele" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBrute" || other.gameObject.tag == "enemyBanshee")
         {
