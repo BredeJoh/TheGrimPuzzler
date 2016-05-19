@@ -29,38 +29,41 @@ public class SkeleSpawner : MonoBehaviour {
 				GameObject searchResult = GameObject.FindGameObjectWithTag ("skeleton");	
 				if (searchResult != null){
 					currentSkeleton = searchResult.transform;
-				limit = false;
-				nextTimeToSearch = Time.time + 0.5f;
-				}
+					limit = false;
+					nextTimeToSearch = Time.time + 0.5f;
 				}
 			}
 		}
+	}
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "ground"){
 			gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f,0f);
 			gameObject.GetComponent<Rigidbody2D> ().gravityScale = 0f;
+		
+		}
+
+		// Show what button to press
+		if (other.gameObject.tag == "Player" && limit == true) {
+			UI.CanInteract (0);
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D other){
 		if (other.gameObject.tag == "Player" && limit == true) {
 
-			// Show what button to press
-			UI.CanInteract (0);
-		} else if (limit == false){
-			UI.CanInteract (1);
-		}
-			if(Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "Player" && limit == true){
+			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && limit == true) {
 
-				Instantiate(skeletonPrefab, skeletonSpawner.position + new Vector3(2f, 1f, 0f), skeletonSpawner.rotation);
+				Instantiate (skeletonPrefab, skeletonSpawner.position + new Vector3 (2f, 1f, 0f), skeletonSpawner.rotation);
 
 				CameraFollow2D.FindSkeleton ();
 
 				limit = false;
 
+				UI.CanInteract (1);
+
 			}
-		
+		}
 	}
 
 	void OnTriggerExit2D (Collider2D other){
