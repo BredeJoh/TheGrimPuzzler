@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Signs : MonoBehaviour {
 
@@ -8,13 +9,15 @@ public class Signs : MonoBehaviour {
 
 	bool showSign = false;
 
+	static int signNr = -1;
+
 	void Update (){
 		
 		if (showSign && Input.GetKeyDown(KeyCode.DownArrow)){
-			signUI.WhatSignToShow (0);
+			signUI.WhatSignToShow (SceneManager.GetActiveScene().buildIndex-1);
 		}
 		if (Input.GetKeyDown(KeyCode.Return)){
-			signUI.WhatSignToShow (1);
+			signUI.WhatSignToShow (2);
 		}
 	}
 
