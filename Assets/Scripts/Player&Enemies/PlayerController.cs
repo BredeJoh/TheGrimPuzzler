@@ -12,10 +12,14 @@ public class PlayerController : MonoBehaviour {
     private bool climb = false;
 	Rigidbody2D body2D;
 
+	Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		transform.position = spawnpoint.position;
 		body2D = GetComponent<Rigidbody2D> ();
+
+		anim = GetComponent<Animator> ();
 	}
 
 	// Update is called once per frame
@@ -36,11 +40,14 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);
 				transform.localScale = new Vector2 (1f, 1f);
+				anim.SetInteger ("animationstate", 1);
 			} else if (Input.GetKey (KeyCode.RightArrow)) {
 				body2D.velocity = new Vector2 (speed, body2D.velocity.y);
 				transform.localScale = new Vector2 (-1f, 1f);
+				anim.SetInteger ("animationstate", 1);
 			} else {
 				body2D.velocity = new Vector2 (0f, body2D.velocity.y);
+				anim.SetInteger ("animationstate", 0);
 			}
 
             // Jumping
