@@ -8,7 +8,7 @@ public class BansheeSpawner : MonoBehaviour {
 	public Transform bansheeSpawner;
 	public Transform currentBanshee;
 
-
+	public GameObject particle;
 
 	float nextTimeToSearch = 0;
 	public bool limit;
@@ -25,11 +25,14 @@ public class BansheeSpawner : MonoBehaviour {
 		if (currentBanshee == null) {
 			limit = true;
 
+			particle.SetActive (true);
+
 			if (nextTimeToSearch <= Time.time) {
 				GameObject searchResult = GameObject.FindGameObjectWithTag ("banshee");	
 				if (searchResult != null){
 					currentBanshee = searchResult.transform;
 					limit = false;
+					particle.SetActive (false);
 					nextTimeToSearch = Time.time + 0.5f;
 				}
 			}

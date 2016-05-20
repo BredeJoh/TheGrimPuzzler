@@ -8,14 +8,13 @@ public class SkeleSpawner : MonoBehaviour {
 	public Transform skeletonSpawner;
 	public Transform currentSkeleton;
 
-
+	public GameObject particle;
 
 	float nextTimeToSearch = 0;
 	public bool limit;
 
 	// Use this for initialization
 	void Start () {
-		
 
 		limit = true;
 	}
@@ -25,11 +24,14 @@ public class SkeleSpawner : MonoBehaviour {
 		if (currentSkeleton == null) {
 			limit = true;
 
+			particle.SetActive (true);
+
 			if (nextTimeToSearch <= Time.time) {
 				GameObject searchResult = GameObject.FindGameObjectWithTag ("skeleton");	
 				if (searchResult != null){
 					currentSkeleton = searchResult.transform;
 					limit = false;
+					particle.SetActive (false);
 					nextTimeToSearch = Time.time + 0.5f;
 				}
 			}

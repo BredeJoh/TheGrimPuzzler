@@ -8,7 +8,7 @@ public class BruteSpawner : MonoBehaviour {
 	public Transform bruteSpawner;
 	public Transform currentBrute;
 
-
+	public GameObject particle;
 	
 	float nextTimeToSearch = 0;
 	public bool limit;
@@ -24,12 +24,15 @@ public class BruteSpawner : MonoBehaviour {
 		
 		if (currentBrute == null) {
 			limit = true;
+
+			particle.SetActive (true);
 			
 			if (nextTimeToSearch <= Time.time) {
 				GameObject searchResult = GameObject.FindGameObjectWithTag ("brute");	
 				if (searchResult != null){
 					currentBrute = searchResult.transform;
 					limit = false;
+					particle.SetActive (false);
 					nextTimeToSearch = Time.time + 0.5f;
 				}
 			}
