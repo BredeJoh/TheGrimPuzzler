@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class LeverInteraction : MonoBehaviour {
 
@@ -17,12 +18,15 @@ public class LeverInteraction : MonoBehaviour {
 	
 	}
 
-    void OnTriggerStay2D(Collider2D other)
-    {
+	void OnTriggerEnter2D (Collider2D other){
 		if (other.gameObject.tag == "skeleton" && active == false){
+			Debug.Log ("CanInteract ();");
 			UI.CanInteract (0);
 		}
+	}
 
+    void OnTriggerStay2D(Collider2D other)
+    {
         if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false)
         {
             bridge.GetComponent<HingeJoint2D>().useMotor = true;

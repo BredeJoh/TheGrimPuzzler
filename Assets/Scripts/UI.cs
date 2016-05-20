@@ -68,7 +68,7 @@ public class UI : MonoBehaviour {
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 
-		if (interactable == true && GameMaster.activePlayer[0]) {
+		if (interactable == true && (GameMaster.activePlayer[0] || GameMaster.activePlayer[1])) {
 			uiImage [4].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else if (interactable == false){
 			uiImage [4].GetComponent<CanvasGroup> ().alpha = 0.5f;
