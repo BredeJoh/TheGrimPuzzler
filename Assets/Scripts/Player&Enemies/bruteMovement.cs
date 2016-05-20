@@ -124,7 +124,7 @@ public class bruteMovement : MonoBehaviour
         anim.SetInteger("animationstate", 2);
         yield return new WaitForSeconds(0.5f);
         gameObject.GetComponentInChildren<EdgeCollider2D>().enabled = true;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         gameObject.GetComponentInChildren<EdgeCollider2D>().enabled = false;
         yield return new WaitForSeconds(1f);
         anim.SetInteger("animationstate", 0);

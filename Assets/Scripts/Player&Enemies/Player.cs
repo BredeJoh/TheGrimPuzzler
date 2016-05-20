@@ -102,9 +102,14 @@ public class Player : MonoBehaviour {
         }
     }
 
+ 
 	IEnumerator OnTriggerEnter2D (Collider2D other){
 
-		if (other.gameObject.tag == "collectable"){
+        if (other.gameObject.tag == "enemyBrute")
+        {
+            DamagePlayer(1);
+        }
+        if (other.gameObject.tag == "collectable"){
 			playerStats.PlayerHealth += 1;
 		}
 
