@@ -77,7 +77,7 @@ public class BansheeController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
-		
+		// Death conditions
         if (other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
         {
 			GameMaster.KillBanshee (this);

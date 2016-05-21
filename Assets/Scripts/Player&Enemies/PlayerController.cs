@@ -148,6 +148,13 @@ public class PlayerController : MonoBehaviour {
         {
             climb = true;
         }
+
+        if (other.gameObject.tag == "platform")
+        {
+            transform.parent = other.transform;
+        }
+
+
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -157,8 +164,12 @@ public class PlayerController : MonoBehaviour {
             climb = false;
         }
 		if (other.gameObject.tag == "ground"){
-			isGrounded = false;
-		}
+			isGrounded = false;        
+        }
+        if (other.gameObject.tag == "platform")
+        {
+            transform.parent = null;
+        }
     }
 
 }
