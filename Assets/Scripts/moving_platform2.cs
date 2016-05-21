@@ -5,7 +5,7 @@ public class moving_platform2 : MonoBehaviour
 {
 
     public float speed = 0.03f;
-
+    bool dontTurn = false;
     // Use this for initialization
     void Start()
     {
@@ -23,11 +23,18 @@ public class moving_platform2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("hei");
-        if (other.gameObject.tag == "movementTrigger")
+        if (other.gameObject.tag == "movementTrigger" && dontTurn == false)
         {
-            print("hei");
             speed *= -1f;
+            dontTurn = true;
+            StartCoroutine(Wait(2.0f));
         }
     }
+
+    IEnumerator Wait(float WaitTime)
+    {
+        yield return new WaitForSeconds(WaitTime);
+        dontTurn = false;
+    }
+
 }

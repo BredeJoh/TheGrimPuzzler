@@ -4,16 +4,16 @@ using System.Collections;
 public class ActivateCrate : MonoBehaviour {
 
 	public GameObject crate;
-	Transform crateSpawn;
+	public Transform crateSpawn;
 	GameObject currentCrate;
 
 	bool respawn = true;
 
 	// Use this for initialization
 	void Start () {
-		crateSpawn = GameObject.Find ("CrateSpawn").transform;
-		Instantiate (crate, crateSpawn.position, crateSpawn.rotation);
-		currentCrate = GameObject.FindGameObjectWithTag ("crate");
+		//crateSpawn = GameObject.Find ("CrateSpawn").transform;
+        currentCrate = Instantiate(crate, crateSpawn.position, crateSpawn.rotation) as GameObject;
+        currentCrate.transform.parent = this.transform;
 		currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 0;
 	}
 	
@@ -60,9 +60,10 @@ public class ActivateCrate : MonoBehaviour {
 		yield return new WaitForSeconds (waitIn);
 		Debug.Log ("---Waited for "+waitIn+" seconds");
 
-		Instantiate (crate, crateSpawn.position, crateSpawn.rotation);
-		currentCrate = GameObject.FindGameObjectWithTag ("crate");
-		currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 0;
+        //Instantiate (crate, crateSpawn.position, crateSpawn.rotation);
+        currentCrate = Instantiate(crate, crateSpawn.position, crateSpawn.rotation) as GameObject;
+        currentCrate.transform.parent = this.transform;
+        currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 0;
 		currentCrate.GetComponent<Rigidbody2D> ().isKinematic = true;
 		respawn = true;
 		gameObject.GetComponent<BoxCollider2D> ().enabled = enabled;
