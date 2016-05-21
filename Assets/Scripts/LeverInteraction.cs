@@ -20,7 +20,6 @@ public class LeverInteraction : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other){
 		if (other.gameObject.tag == "skeleton" && active == false){
-			Debug.Log ("CanInteract ();");
 			UI.CanInteract (0);
 		}
 	}

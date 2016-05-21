@@ -77,20 +77,28 @@ public class BansheeController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
-		if (other.gameObject.tag == "ground" || other.gameObject.tag == "spikes"){
-			isGrounded = true;
-		}
+		
         if (other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
         {
 			GameMaster.KillBanshee (this);
         }
 	}
+
+	void OnTriggerEnter2D (Collider2D other){
+		if (other.gameObject.tag == "ground" || other.gameObject.tag == "spikes"){
+			isGrounded = true;
+		}
+	}
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "ladder")
         {
             climb = true;
         }
+		if (other.gameObject.tag == "ground" || other.gameObject.tag == "spikes"){
+			isGrounded = true;
+		}
     }
     void OnTriggerExit2D(Collider2D other)
     {
