@@ -57,7 +57,7 @@ public class BansheeSpawner : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && GameMaster.activePlayer[0] && limit == true) {
 
-				Instantiate (bansheePrefab, bansheeSpawner.position + new Vector3 (2f, 1f, 0f), bansheeSpawner.rotation);
+				Instantiate (bansheePrefab, bansheeSpawner.position + new Vector3 (2f, 1.5f, 0f), bansheeSpawner.rotation);
 
 				CameraFollow2D.FindBanshee ();
 

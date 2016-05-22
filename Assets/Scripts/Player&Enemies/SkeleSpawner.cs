@@ -57,7 +57,7 @@ public class SkeleSpawner : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && GameMaster.activePlayer[0] && limit == true) {
 
-				Instantiate (skeletonPrefab, skeletonSpawner.position + new Vector3 (2f, 1f, 0f), skeletonSpawner.rotation);
+				Instantiate (skeletonPrefab, skeletonSpawner.position + new Vector3 (2f, 1.5f, 0f), skeletonSpawner.rotation);
 
 				CameraFollow2D.FindSkeleton ();
 
