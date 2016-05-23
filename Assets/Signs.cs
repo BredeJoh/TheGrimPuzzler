@@ -14,7 +14,11 @@ public class Signs : MonoBehaviour {
 
 		// If no sign-text is active and the player presses down, it shows a sign-text according to the scene index
 		if (showSign && Input.GetKeyDown(KeyCode.DownArrow)){
-			signUI.WhatSignToShow (SceneManager.GetActiveScene().buildIndex-1);
+			if (gameObject.tag == "sign1"){
+			signUI.WhatSignToShow (0);
+			} else if (gameObject.tag == "sign2"){
+				signUI.WhatSignToShow (1);
+			}
 		}
 		// Hide sign-text
 		if (Input.GetKeyDown(KeyCode.Return)){
