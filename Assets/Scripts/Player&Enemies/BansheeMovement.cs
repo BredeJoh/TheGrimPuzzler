@@ -36,6 +36,7 @@ public class BansheeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // finds distance between player and object
         PlayerDistance = gameObject.transform.position.x - playerBody2D.transform.position.x;
         PlayerYDistance = gameObject.transform.position.y - playerBody2D.transform.position.y;
 
@@ -49,7 +50,7 @@ public class BansheeMovement : MonoBehaviour
             playerTooHigh = false;
 
         }
-
+        // standard movement, left and right
         if (moveRight && (PlayerDistance > 10f || PlayerDistance < -10f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
@@ -67,11 +68,12 @@ public class BansheeMovement : MonoBehaviour
         {
             anim.SetInteger("animationstate", 0);
         }
+        // stands still
         if (stay)
         {
             anim.SetInteger("animationstate", 0);
         }
-
+        // turns towards player and attacks if close enough
         if (PlayerDistance <= 10f && PlayerDistance > -10f && playerTooHigh == false)
         {
 
@@ -89,7 +91,7 @@ public class BansheeMovement : MonoBehaviour
             }
         }
     }
-
+    // changes movedirection
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "movementTrigger")
@@ -104,31 +106,16 @@ public class BansheeMovement : MonoBehaviour
             }
         }
     }
-
+    // Death conditions
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "crate" || other.gameObject.tag == "projectile")
         {
-
-            if (gameObject.tag == "enemyBrute")
-            {
-                Instantiate(bruteSpawn, transform.position, transform.rotation);
-				Destroy(this.gameObject);
-            }
-            else if (gameObject.tag == "enemySkele")
-            {
-                Instantiate(deathParticle[0], transform.position, transform.rotation);
-                Instantiate(skeleSpawn, transform.position, transform.rotation);
-                Destroy(this.gameObject);
-            }
-            else if (gameObject.tag == "enemyBanshee")
-            {
                 Instantiate(banshSpawn, transform.position, transform.rotation);
-                Destroy(this.gameObject);
-            }
+                Destroy(this.gameObject);           
         }
     }
-
+    
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "stay")
@@ -136,7 +123,7 @@ public class BansheeMovement : MonoBehaviour
             stay = true;
         }
     }
-
+    // banshee attack
     IEnumerator attackAndWait(float WaitTime)
     {
         throws = true;

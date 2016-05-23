@@ -23,7 +23,8 @@ public class BansheeController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (isGrounded && GameMaster.activePlayer[3] == false)
+        // sets character kinamatic when not used
+        if (isGrounded && GameMaster.activePlayer[3] == false)
         {
             body2D.isKinematic = true;
         }
@@ -31,7 +32,8 @@ public class BansheeController : MonoBehaviour {
         {
             body2D.isKinematic = false;
         }
-		if (GameMaster.activePlayer[3] == true) {
+        // plays only when player is controlling banshee
+        if (GameMaster.activePlayer[3] == true) {
 			// Check if Banshee exists
 
             
@@ -48,6 +50,7 @@ public class BansheeController : MonoBehaviour {
 				anim.SetInteger ("animationstate", 0);
 				body2D.velocity = new Vector2 (0f, body2D.velocity.y);
 			}
+            // kills object
             if (Input.GetKey(KeyCode.S))
             {
 				GameMaster.KillBanshee (this);
@@ -75,15 +78,15 @@ public class BansheeController : MonoBehaviour {
 			//gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,transform.position.y);
 		}
 	}
-
-	void OnCollisionEnter2D(Collision2D other){
-		// Death conditions
+    // Death conditions
+    void OnCollisionEnter2D(Collision2D other){
+		
         if (other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
         {
 			GameMaster.KillBanshee (this);
         }
 	}
-
+    // checks if player can jump or climb
 	void OnTriggerEnter2D (Collider2D other){
 		if (other.gameObject.tag == "ground" || other.gameObject.tag == "spikes"){
 			isGrounded = true;
@@ -111,6 +114,7 @@ public class BansheeController : MonoBehaviour {
             isGrounded = false;
         }
     }
+    // player controlled banshee attack
     IEnumerator attackAndWait(float WaitTime)
     {
         throws = true;

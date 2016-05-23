@@ -16,7 +16,7 @@ public class BruteController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // Check if Brute exists
+        // Check if Brute exists and is set as active character
 
 		if (GameMaster.activePlayer[2] == true) {
 			// Movement
@@ -32,6 +32,7 @@ public class BruteController : MonoBehaviour {
 				body2D.velocity = new Vector2 (0f, body2D.velocity.y);
 				anim.SetInteger ("animationstate", 0);
 			}
+            // kills object
             if (Input.GetKey(KeyCode.S))
             {
                 Destroy(gameObject);
@@ -40,7 +41,7 @@ public class BruteController : MonoBehaviour {
 			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (0,0);
 		}
 	}
-	
+	// death conditions
 	void OnCollisionEnter2D(Collision2D other){
 
 		if (other.gameObject.tag == "spikes" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute") {

@@ -21,6 +21,7 @@ public class bruteMovement : MonoBehaviour
 	Animator anim;
 
     // Use this for initialization
+    
     void Start()
     {
 		anim = gameObject.GetComponent<Animator> ();
@@ -32,6 +33,7 @@ public class bruteMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // finds distance between player and object
         PlayerDistance = gameObject.transform.position.x - playerBody2D.transform.position.x;
         PlayerYDistance = gameObject.transform.position.y - playerBody2D.transform.position.y;
 
@@ -44,7 +46,7 @@ public class bruteMovement : MonoBehaviour
         {
             playerTooHigh = false;
         }
-
+        // turns towards player and attacks if close enough
         if (PlayerDistance <= 3f && PlayerDistance > -3f && playerTooHigh == false)
         {
 			
@@ -64,7 +66,7 @@ public class bruteMovement : MonoBehaviour
             }
         }
 
-
+        // standard movement, left and right
         if (moveRight && (PlayerDistance > 3f || PlayerDistance < -3f || playerTooHigh == true))
         {
             body2D.velocity = new Vector2(speed, body2D.velocity.y);
@@ -79,7 +81,7 @@ public class bruteMovement : MonoBehaviour
 			anim.SetInteger ("animationstate", 0);
         }
     }
-
+    // changes movedirection
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "movementTrigger")
@@ -94,30 +96,16 @@ public class bruteMovement : MonoBehaviour
             }
         }
     }
-
+    // death conditions
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "crate" || other.gameObject.tag == "projectile")
         {
-
-            if (gameObject.tag == "enemyBrute")
-            {
                 Instantiate(bruteSpawn, transform.position, transform.rotation);
                 Destroy(this.gameObject);
-            }
-            else if (gameObject.tag == "enemySkele")
-            {
-                Instantiate(skeleSpawn, transform.position, transform.rotation);
-                Destroy(this.gameObject);
-            }
-            else if (gameObject.tag == "enemyBanshee")
-            {
-                Instantiate(banshSpawn, transform.position, transform.rotation);
-                Destroy(this.gameObject);
-            }
         }
     }
-
+    // brute attack
     IEnumerator attackAndWait(float WaitTime)
     {
         attack = true;

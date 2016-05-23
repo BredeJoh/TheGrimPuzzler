@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        // moves player to spawnpoint at the start of a level
 		transform.position = spawnpoint.position;
 		body2D = GetComponent<Rigidbody2D> ();
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // sets player as kinematick if inactive (player is controlling enemy)
 		if (isGrounded && GameMaster.activePlayer[0] == false)
         {
             body2D.isKinematic = true;
@@ -70,12 +72,7 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-	void OnCollisionEnter2D(Collision2D other){
-		/*if (other.gameObject.tag == "ground") {
-			isGrounded = true;
-		}*/  
-	}
-
+    // Stuns and knockback to player
 	void OnCollisionStay2D (Collision2D other){
         if (other.gameObject.tag == "enemySkele" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBrute" || other.gameObject.tag == "enemyBanshee") 
         {
@@ -83,7 +80,7 @@ public class PlayerController : MonoBehaviour {
             Vector2 knockBack = other.gameObject.transform.position - gameObject.transform.position;
             if (knockBack.x > 0)
             {
-
+                // Destroy projectiles if hit
                 body2D.velocity = new Vector2(-speed, speed);
                 if (other.gameObject.tag == "projectile")
                 {
@@ -101,7 +98,7 @@ public class PlayerController : MonoBehaviour {
         }
         
     }
-
+    // stun and knockback for trigger attacks (brute)
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "enemySkele" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBrute" || other.gameObject.tag == "enemyBanshee")
@@ -129,14 +126,7 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void OnCollisionExit2D(Collision2D other)
-    {
-        /*if (other.gameObject.tag == "ground")
-        {
-            isGrounded = false;
-        }*/
-    }
-
+    // checks if layer can jump, climb or is on moving platform
     void OnTriggerStay2D(Collider2D other)
     {
 		if (other.gameObject.tag == "ground")

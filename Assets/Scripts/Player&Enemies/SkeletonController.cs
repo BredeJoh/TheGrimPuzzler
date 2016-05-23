@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// player controlled skeleton script
+
 public class SkeletonController : MonoBehaviour
 {
 
@@ -32,6 +34,7 @@ public class SkeletonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // sets character kinamatic when not used
 		if (isGrounded && GameMaster.activePlayer[1] == false)
         {
             body2D.isKinematic = true;
@@ -40,6 +43,7 @@ public class SkeletonController : MonoBehaviour
         {
             body2D.isKinematic = false;
         }
+        // plays only when player is controlling skeleton
 		if (GameMaster.activePlayer[1] == true)
         {
             // Check if Skeleton exists
@@ -71,6 +75,7 @@ public class SkeletonController : MonoBehaviour
 					anim.SetInteger ("animationstate", 0);
 				}
             }
+            // kills object
             if (Input.GetKey(KeyCode.S))
             {
                 Destroy(gameObject);
@@ -101,7 +106,7 @@ public class SkeletonController : MonoBehaviour
           // gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, transform.position.y);
         }
     }
-
+    //death conditions
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "spikes" || other.gameObject.tag == "projectile" || other.gameObject.tag == "enemyBanshee" || other.gameObject.tag == "enemySkele" || other.gameObject.tag == "enemyBrute")
@@ -110,6 +115,7 @@ public class SkeletonController : MonoBehaviour
             GameMaster.KillSkeleton(this);
         }
     }
+    // checks if grounded or can climb
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "ground")
@@ -133,6 +139,7 @@ public class SkeletonController : MonoBehaviour
             isGrounded = false;
         }
     }
+    // player controlled skeleton attack
     IEnumerator attackAndWait(float WaitTime)
     {
         throws = true;
