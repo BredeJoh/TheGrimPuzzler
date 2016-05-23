@@ -34,9 +34,8 @@ public class spellMovement : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-       
     }
-    
+
     IEnumerator Dissapear()
     {
         yield return new WaitForSeconds(2f);
