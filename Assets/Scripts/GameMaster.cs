@@ -13,15 +13,19 @@ public class GameMaster : MonoBehaviour {
 
 	public static int collectables;
 
+	// Variable for delaying a respawn
 	int spawnDelay = 1;
 
+	// Prefabs for the Player and its startpoint
 	public Transform playerPrefab;
 	public Transform spawnPoint;
 
 	// Use this for initialization
 	void Start () {
+		// Finding the GameMaster
 		gm = GameObject.FindGameObjectWithTag ("GM").GetComponent<GameMaster>();
 
+		// Setting up the array for what player is active
 		activePlayer = new bool[4];
 		for(int i=0; i<4; i++){
 			activePlayer[i] = false;
@@ -30,8 +34,7 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		transform.position = GameObject.FindGameObjectWithTag ("Player").transform.position;
-
+		//transform.position = GameObject.FindGameObjectWithTag ("Player").transform.position;
 	}
 
 	// Update is called once per frame

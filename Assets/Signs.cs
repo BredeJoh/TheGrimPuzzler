@@ -9,8 +9,6 @@ public class Signs : MonoBehaviour {
 
 	bool showSign = false;
 
-	static int signNr = -1;
-
 	void Update (){
 		
 		if (showSign && Input.GetKeyDown(KeyCode.DownArrow)){

@@ -4,8 +4,16 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
+	// Array for the displayed UI images
 	public Image[] uiImage;
 
+	// Array for the original UI
+	public Sprite[] originalUI;
+
+	// Array for images for UI colorchange
+	public Sprite[] colorUI;
+
+	// Array for the tutorial texts
 	public Image[] sign;
 
 	static bool interactable = false;
@@ -41,27 +49,29 @@ public class UI : MonoBehaviour {
 			uiImage [2].GetComponent<CanvasGroup> ().alpha = 0.5f;
 		}
 
-		// Viser hvilken karakter du kontrollerer
+		// Shows what character you control
 		if (GameMaster.activePlayer[1]) {
-			uiImage [0].GetComponent<Image> ().color = Color.green;
+			// Change image
+			uiImage [0].GetComponent<Image>().sprite = colorUI[0];
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
-			uiImage [0].GetComponent<Image> ().color = Color.white;
+			// Changing back to the original sprite
+			uiImage [0].GetComponent<Image>().sprite = originalUI[0];
 		}
 		if (GameMaster.activePlayer[2]) {
-			uiImage [1].GetComponent<Image> ().color = Color.blue;
+			uiImage [1].GetComponent<Image> ().sprite = colorUI[1];
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
-			uiImage [1].GetComponent<Image> ().color = Color.white;
+			uiImage [1].GetComponent<Image> ().sprite = originalUI[1];
 		}
 		if (GameMaster.activePlayer[3]) {
-			uiImage [2].GetComponent<Image> ().color = Color.red;
+			uiImage [2].GetComponent<Image> ().sprite = colorUI[2];
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 1f;
 			uiImage [6].GetComponent<CanvasGroup> ().alpha = 1f;
 		} else {
-			uiImage [2].GetComponent<Image> ().color = Color.white;
+			uiImage [2].GetComponent<Image> ().sprite = originalUI[2];
 		}
 		if (GameMaster.activePlayer[0]){
 			uiImage [5].GetComponent<CanvasGroup> ().alpha = 0.5f;
