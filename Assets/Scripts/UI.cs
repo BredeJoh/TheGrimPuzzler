@@ -78,7 +78,8 @@ public class UI : MonoBehaviour {
 	// Show sign
 	public void WhatSignToShow (int x){
 		if (x == 2) {
-			for (int i = 0; i < 1; i++) {
+			// Hiding all signs 
+			for (int i = 0; i < 3; i++) {
 				sign [i].GetComponent<CanvasGroup> ().alpha = 0;
 			}
 		} else {
