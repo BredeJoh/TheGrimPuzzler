@@ -27,6 +27,7 @@ public class BansheeController : MonoBehaviour {
         if (isGrounded && GameMaster.activePlayer[3] == false)
         {
             body2D.isKinematic = true;
+            anim.SetInteger("animationstate", 0);
         }
         else
         {

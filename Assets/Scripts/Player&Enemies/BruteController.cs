@@ -17,8 +17,16 @@ public class BruteController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Check if Brute exists and is set as active character
-
-		if (GameMaster.activePlayer[2] == true) {
+        if (GameMaster.activePlayer[2] == false)
+        {
+            body2D.isKinematic = true;
+            anim.SetInteger("animationstate", 0);
+        }
+        else
+        {
+            body2D.isKinematic = false;
+        }
+        if (GameMaster.activePlayer[2] == true) {
 			// Movement
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				body2D.velocity = new Vector2 (-speed, body2D.velocity.y);

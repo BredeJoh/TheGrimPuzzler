@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 		if (isGrounded && GameMaster.activePlayer[0] == false)
         {
             body2D.isKinematic = true;
+            anim.SetInteger("animationstate", 0);
         }
         else
         {

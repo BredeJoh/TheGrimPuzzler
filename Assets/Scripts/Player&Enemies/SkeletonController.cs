@@ -38,6 +38,7 @@ public class SkeletonController : MonoBehaviour
 		if (isGrounded && GameMaster.activePlayer[1] == false)
         {
             body2D.isKinematic = true;
+            anim.SetInteger("animationstate", 0);
         }
         else
         {
