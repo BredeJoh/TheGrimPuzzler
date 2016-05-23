@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class SkeleSpawner : MonoBehaviour {
 
+	// Variables
 	public Transform skeletonPrefab;
 	public Transform skeletonSpawner;
 	public Transform currentSkeleton;
@@ -11,6 +12,7 @@ public class SkeleSpawner : MonoBehaviour {
 	public GameObject particle;
 
 	float nextTimeToSearch = 0;
+	// If limit is true a gameobject can be spawned
 	public bool limit;
 
 	// Use this for initialization
@@ -20,7 +22,7 @@ public class SkeleSpawner : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-
+	// Checks if there is a skeleton in the scene
 		if (currentSkeleton == null) {
 			limit = true;
 
@@ -53,6 +55,7 @@ public class SkeleSpawner : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
+		// Checks if the player can spawn a skeleton
 		if (other.gameObject.tag == "Player" && limit == true) {
 
 			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && GameMaster.activePlayer[0] && limit == true) {

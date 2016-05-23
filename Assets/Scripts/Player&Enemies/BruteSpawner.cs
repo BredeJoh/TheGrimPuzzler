@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class BruteSpawner : MonoBehaviour {
 
+	// Variables
 	public Transform brutePrefab;
 	public Transform bruteSpawner;
 	public Transform currentBrute;
@@ -11,6 +12,7 @@ public class BruteSpawner : MonoBehaviour {
 	public GameObject particle;
 	
 	float nextTimeToSearch = 0;
+	// If limit is true a gameobject can be spawned
 	public bool limit;
 	
 	// Use this for initialization
@@ -21,7 +23,7 @@ public class BruteSpawner : MonoBehaviour {
 	}
 	
 	void FixedUpdate(){
-		
+	// Checks if there is a brute in the scene
 		if (currentBrute == null) {
 			limit = true;
 
@@ -53,6 +55,7 @@ public class BruteSpawner : MonoBehaviour {
 	}
 	
 	void OnTriggerStay2D(Collider2D other){
+		// Checks if the player can spawn a brute
 		if (other.gameObject.tag == "Player" && limit == true) {
 
 			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && GameMaster.activePlayer[0] && limit == true) {

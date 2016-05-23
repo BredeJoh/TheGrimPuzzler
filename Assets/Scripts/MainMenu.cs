@@ -11,10 +11,11 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
+	// Loading the next scene
 	IEnumerator LoadNextLevel(){
 		float fadeTime = GameObject.Find("Goal").GetComponent<Fading> ().BeginFade(1);
 		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+		SceneManager.LoadScene ("First_Level");
 
 	}
 

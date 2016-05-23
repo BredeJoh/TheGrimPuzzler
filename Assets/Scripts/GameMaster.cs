@@ -34,7 +34,9 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		//transform.position = GameObject.FindGameObjectWithTag ("Player").transform.position;
+		if (Input.GetKeyDown (KeyCode.Escape)){
+			Application.Quit;
+		}
 	}
 
 	// Update is called once per frame

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class BansheeSpawner : MonoBehaviour {
 
+	// Variables
 	public Transform bansheePrefab;
 	public Transform bansheeSpawner;
 	public Transform currentBanshee;
@@ -11,6 +12,7 @@ public class BansheeSpawner : MonoBehaviour {
 	public GameObject particle;
 
 	float nextTimeToSearch = 0;
+	// If limit is true a gameobject can be spawned
 	public bool limit;
 
 	// Use this for initialization
@@ -21,7 +23,7 @@ public class BansheeSpawner : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-
+	// Checks if there is a banshee in the scene
 		if (currentBanshee == null) {
 			limit = true;
 
@@ -53,6 +55,7 @@ public class BansheeSpawner : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
+		// Checks if the player can spawn a banshee
 		if (other.gameObject.tag == "Player" && limit == true) {
 
 			if (Input.GetKeyDown (KeyCode.DownArrow) && other.gameObject.tag == "Player" && GameMaster.activePlayer[0] && limit == true) {
