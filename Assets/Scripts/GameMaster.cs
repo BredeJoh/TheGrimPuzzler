@@ -35,7 +35,7 @@ public class GameMaster : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (Input.GetKeyDown (KeyCode.Escape)){
-			Application.Quit;
+			Application.Quit();
 		}
 	}
 
