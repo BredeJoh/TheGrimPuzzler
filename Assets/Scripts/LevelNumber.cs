@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelNumber : MonoBehaviour {
 
-	//bool level1 = false;
-
 	Text levelText;
 
 	// Use this for initialization
@@ -14,11 +12,9 @@ public class LevelNumber : MonoBehaviour {
 
 		levelText = GetComponent<Text> ();
 
-		//level1 = true;
-
-		//if (level1){
+			// Changing the text at the start of a scene according to the scene index
 			levelText.text = ("Floor Number " + SceneManager.GetActiveScene().buildIndex);
-		//}
+
 	}
 	
 	// Update is called once per frame

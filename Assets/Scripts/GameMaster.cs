@@ -80,7 +80,8 @@ public class GameMaster : MonoBehaviour {
 
 		// Waits a bit before fading out
 		yield return new WaitForSeconds (spawnDelay);
-	
+
+		// Beginning fade out
 		float fadeTime = GameObject.Find("Goal").GetComponent<Fading> ().BeginFade(1);
 
 		// Waiting on fading to end before restarting level
@@ -89,20 +90,25 @@ public class GameMaster : MonoBehaviour {
 		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 	}
 
+	// Function for destroying the Player and starting RespawnPlayer ();
 	public static void KillPlayer (Player player) {
 		Destroy (player.gameObject);
 		gm.StartCoroutine(gm.RespawnPlayer ());
 	}
+	// Function for destroying the Skeleton
 	public static void KillSkeleton (SkeletonController skeleton) {
 		Destroy (skeleton.gameObject);
 
 		WhatPlayerIsActive (0);
 	}
+
+	// Function for destroying the Brute
 	public static void KillBrute (BruteController brute){
 		Destroy (brute.gameObject);
 
 		WhatPlayerIsActive (0);
 	} 
+	// Function for destroying the Banshee
 	public static void KillBanshee (BansheeController banshee){
 		Destroy (banshee.gameObject);
 

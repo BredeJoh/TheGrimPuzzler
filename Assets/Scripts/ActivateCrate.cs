@@ -36,9 +36,11 @@ public class ActivateCrate : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.DownArrow)) {
 
+				// Making the crate fall
 				currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 2;
 				currentCrate.GetComponent<Rigidbody2D> ().isKinematic = false;
 
+				// Disabes the collider of the lever until the crate has respawned
 				gameObject.GetComponent<BoxCollider2D> ().enabled = !enabled;
 
 			}
@@ -60,7 +62,6 @@ public class ActivateCrate : MonoBehaviour {
 		yield return new WaitForSeconds (waitIn);
 		Debug.Log ("---Waited for "+waitIn+" seconds");
 
-        //Instantiate (crate, crateSpawn.position, crateSpawn.rotation);
         currentCrate = Instantiate(crate, crateSpawn.position, crateSpawn.rotation) as GameObject;
         currentCrate.transform.parent = this.transform;
         currentCrate.GetComponent<Rigidbody2D> ().gravityScale = 0;

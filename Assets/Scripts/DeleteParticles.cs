@@ -10,7 +10,8 @@ public class DeleteParticles : MonoBehaviour {
 
 	// Sletter partikklen etter den har gjort sitt
 	IEnumerator DestroyParticle (){
-		
+
+		// Destroys particles after a certain amount of time
 		yield return new WaitForSeconds (3);
 		Destroy (gameObject);
 	}

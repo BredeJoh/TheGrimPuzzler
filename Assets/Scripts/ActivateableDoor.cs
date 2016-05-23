@@ -8,22 +8,20 @@ public class ActivateableDoor : MonoBehaviour {
 	bool activated = true;
 
 	void Start (){
+		// Finds the door
 		door = GameObject.FindGameObjectWithTag ("door");
 	}
 
 	void OnTriggerStay2D (Collider2D other){
 		if (other.gameObject.tag == "brute"){
-			//Destroy (door);
-			//door.GetComponent<SpriteRenderer>().enabled = !enabled;
-			//door.GetComponent<BoxCollider2D>().enabled = !enabled;
 			if (activated){
 			StartCoroutine (PushDownPlate());
 				activated = false;
 			}
-			//gameObject.GetComponent<BoxCollider2D> ().enabled = !gameObject.GetComponent<BoxCollider2D> ().enabled;
 		}
 	}
 
+	// Waiting before pushing down the plate and disable the door
 	IEnumerator PushDownPlate (){
 
 		yield return new WaitForSeconds (1);
