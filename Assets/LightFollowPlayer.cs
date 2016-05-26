@@ -15,7 +15,7 @@ public class LightFollowPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        gameObject.transform.position = Player.transform.position + new Vector3(0f, 0f, -6f);
+        gameObject.transform.position = Player.transform.position + new Vector3(0f, 0f, -4f);
 
 	}
 }
