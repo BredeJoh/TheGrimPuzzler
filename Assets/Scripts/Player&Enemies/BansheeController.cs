@@ -103,6 +103,10 @@ public class BansheeController : MonoBehaviour {
 		if (other.gameObject.tag == "ground" || other.gameObject.tag == "spikes"){
 			isGrounded = true;
 		}
+        if (other.gameObject.tag == "platform")
+        {
+            transform.parent = other.transform;
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
@@ -113,6 +117,10 @@ public class BansheeController : MonoBehaviour {
         if (other.gameObject.tag == "ground")
         {
             isGrounded = false;
+        }
+        if (other.gameObject.tag == "platform")
+        {
+            transform.parent = null;
         }
     }
     // player controlled banshee attack

@@ -18,13 +18,25 @@ public class Ladder_fix : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false)
+        if (other.gameObject.tag == "skeleton")
+        {
+            UI.CanInteract(0);
+        }
+            if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false)
         {
             active = true;
             ladder.GetComponent<SpriteRenderer>().sprite = sprite;
             ladder.tag = "ladder";
 
 
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "skeleton")
+        {
+            UI.CanInteract(1);
         }
     }
 }
