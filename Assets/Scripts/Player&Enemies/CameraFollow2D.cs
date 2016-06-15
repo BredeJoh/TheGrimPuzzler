@@ -16,14 +16,20 @@ public class CameraFollow2D : MonoBehaviour {
 	public static Transform skeleton;
 	public static Transform brute;
 	public static Transform banshee;
+    private Transform RestrictDown;
+    private Transform RestrictUp;
 
 	// Variable for when to start the next search
 	static float nextTimeToSearch = 0;
+    private bool move = true;
 
 	void Start (){
 		// Finding the player
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
-	}
+        RestrictDown = GameObject.Find("CameraRestrictDown").transform;
+        RestrictUp = GameObject.Find("CameraRestrictUp").transform;
+
+    }
 	
 // Update is called once per frame
 	void FixedUpdate () {
@@ -72,17 +78,37 @@ public class CameraFollow2D : MonoBehaviour {
 		} 
 
 		// Defining Target to follow
-			if (target) {
-			// Defining space that the camera will occupy in Viewport-Space
-				Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
-				Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
-			// Following the player w/ smoothing
-				Vector3 destination = transform.position + delta;
-			// Function that smooths out the Vector toward the target over time
-				transform.position = Vector3.SmoothDamp
-					(transform.position, destination, ref velocity, dampTime);
-			}
-	}
+		if (target) {
+		// Defining space that the camera will occupy in Viewport-Space
+			Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
+			Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
+		// Following the player w/ smoothing
+			Vector3 destination = transform.position + delta;
+		// Function that smooths out the Vector toward the target over time
+			transform.position = Vector3.SmoothDamp
+				(transform.position, destination, ref velocity, dampTime);
+		}
+
+
+        if(gameObject.transform.position.x < RestrictDown.transform.position.x)
+        {
+            gameObject.transform.position = new Vector3(RestrictDown.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        }
+        if(gameObject.transform.position.y < RestrictDown.transform.position.y)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, RestrictDown.transform.position.y, gameObject.transform.position.z);
+        }
+       if(gameObject.transform.position.x > RestrictUp.transform.position.x)
+        {
+            gameObject.transform.position = new Vector3(RestrictUp.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        }
+       if(gameObject.transform.position.y > RestrictUp.transform.position.y)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, RestrictUp.transform.position.y, gameObject.transform.position.z);
+        }
+        
+            
+    }
 
 	// Function for searching for any GameObject with the "Player" tag.
 	void FindPlayer () {
@@ -123,4 +149,25 @@ public class CameraFollow2D : MonoBehaviour {
 			nextTimeToSearch = Time.time + 0.5f;
 		}
 	}
+    /*public static void FindRestrictDown()
+    {
+        if (nextTimeToSearch <= Time.time)
+        {
+            GameObject searchResult = GameObject.Find("CameraRestrictDown");
+            if (searchResult != null)
+                banshee = searchResult.transform;
+            nextTimeToSearch = Time.time + 0.5f;
+        }
+    }
+    public static void FindRestrictUp()
+    {
+        if (nextTimeToSearch <= Time.time)
+        {
+            GameObject searchResult = GameObject.FindGameObjectWithTag("banshee");
+            if (searchResult != null)
+                banshee = searchResult.transform;
+            nextTimeToSearch = Time.time + 0.5f;
+        }
+    } 
+    */
 }
