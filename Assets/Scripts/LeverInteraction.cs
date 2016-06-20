@@ -26,7 +26,7 @@ public class LeverInteraction : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false)
+		if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false && GameMaster.activePlayer[1]==true)
         {
             bridge.GetComponent<HingeJoint2D>().useMotor = true;
             bridge.GetComponent<HingeJoint2D>().useLimits = false;

@@ -22,7 +22,7 @@ public class Ladder_fix : MonoBehaviour {
         {
             UI.CanInteract(0);
         }
-            if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false)
+		if (Input.GetKeyDown(KeyCode.DownArrow) && other.gameObject.tag == "skeleton" && active == false && GameMaster.activePlayer[1]==true)
         {
             active = true;
             ladder.GetComponent<SpriteRenderer>().sprite = sprite;
